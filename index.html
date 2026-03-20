@@ -377,10 +377,10 @@
 
   <div id="contacts" class="content">
     <h2>КОНТАКТИ</h2>
-    <p><div class="contact-item">📍 <span><strong>Адрес:</strong> гр. София, ж.к. "Люлин Център", ул. „Добри Немиров" 5, (<a href="https://maps.app.goo.gl/feniksluylin" target="_blank" rel="noopener">Люлин Плаза</a>), ет. 2</span></div></p>
+    <p><div class="contact-item">📍 <span><strong>Адрес:</strong> гр. София, ж.к. "Люлин Център", ул. „Добри Немиров" 5, (<a href="https://www.lyulinplaza.com/" target="_blank" rel="noopener">Люлин Плаза</a>), ет. 2</span></div></p>
   <p><div class="contact-item">🥋 <span><strong>Сенсей:</strong> Румяна Янъкова, III дан.</span></div></p>
   <p><div class="contact-item">📞 <span><strong>Телефон:</strong> <a href="tel:+359877980967">087 798 0967</a></span></div></p>
-  <p><div class="contact-item">🌐 <a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a></div></p>
+  <p><div class="contact-item">🌐 <a href="https://www.facebook.com/profile.php?id=61552224063859" target="_blank" rel="noopener">Facebook</a></div></p>
 
   <p><h2 style="margin-top:2rem;">Местоположение по карта</h2></p>
   <div style="border-radius:8px; overflow:hidden; width:100%;">
@@ -458,6 +458,7 @@
 
       if (isMini) {
         document.querySelectorAll(".content").forEach(s => s.classList.remove("active"));
+        document.querySelectorAll(".top-menu a").forEach(a => a.style.color = "");
         centerContainer.classList.remove("hidden");
         logo.classList.remove("mini", "menu-open");
         return;
@@ -476,6 +477,10 @@
       document.querySelectorAll(".content").forEach(el => el.classList.remove("active"));
       document.getElementById(id).classList.add("active");
 
+      document.querySelectorAll(".top-menu a").forEach(a => a.style.color = "");
+      const activeLink = document.querySelector(`.top-menu a[onclick*="'${id}'"]`);
+      if (activeLink) activeLink.style.color = "#ED1C24";
+
       centerContainer.classList.add("hidden");
       logo.classList.add("mini");
 
@@ -492,6 +497,7 @@
 
     bgLayer.addEventListener("click", () => {
       document.querySelectorAll(".content").forEach(s => s.classList.remove("active"));
+      document.querySelectorAll(".top-menu a").forEach(a => a.style.color = "");
       centerContainer.classList.remove("hidden");
       logo.classList.remove("mini", "menu-open");
 
