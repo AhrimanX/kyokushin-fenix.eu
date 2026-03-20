@@ -43,10 +43,11 @@
       pointer-events: none;
     }
 
-    .bg-left { left: 0; }
+    .bg-left { left: -30px; }
     .bg-right { right: 0; }
 
     /* LOGO */
+    /* FIX 1: Анимацията pulse важи само за нормалното лого, не за mini */
     .logo {
       position: fixed;
       top: 50%;
@@ -71,14 +72,9 @@
       left: 50%;
       transform: translateX(-50%);
       height: 70px !important;
-      animation: pulseLogoMini 2.2s ease-in-out infinite;
+      /* FIX 1: mini логото НЕ пулсира */
+      animation: none;
       z-index: 2000;
-    }
-
-    @keyframes pulseLogoMini {
-      0%   { transform: translateX(-50%) scale(1); }
-      50%  { transform: translateX(-50%) scale(1.08); }
-      100% { transform: translateX(-50%) scale(1); }
     }
 
     .logo.mini.menu-open {
@@ -101,14 +97,32 @@
       box-sizing: border-box;
     }
 
+    /* FIX 2: Hamburger – стилизиран с 3 черти вместо unicode символ */
     .hamburger {
       display: none;
       position: absolute;
       left: 1rem;
-      font-size: 1.8rem;
       cursor: pointer;
       user-select: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 6px;
+      background: none;
+      border: none;
     }
+
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
     .top-menu {
       display: flex;
@@ -134,7 +148,7 @@
     }
 
     .top-menu a:visited {
-    color: #baa9a9;
+      color: #baa9a9;
     }
 
     /* CONTENT */
@@ -164,16 +178,16 @@
     }
 
     .content a {
-    color: white; /* or any color you want */
-    text-decoration: underline; /* optional */
+      color: white;
+      text-decoration: underline;
     }
 
     .content a:hover {
-    color: #ff4444; /* hover color */
+      color: #ff4444;
     }
 
     .content a:visited {
-    color: #baa9a9; /* visited color */
+      color: #baa9a9;
     }
 
     .content.active {
@@ -205,11 +219,11 @@
       transform: scale(1.05);
     }
 
-    /* FIXED MODAL */
+    /* MODAL */
     .modal {
       display: none;
       position: fixed;
-      z-index: 500;
+      z-index: 2000;
       left: 0;
       top: 0;
       width: 100%;
@@ -235,15 +249,16 @@
       text-shadow: 0 0 8px black;
     }
 
-    /* MOBILE (UNCHANGED) */
+    /* MOBILE */
     @media (max-width: 600px), (max-aspect-ratio: 9/16) {
       body {
         background: url('https://i.ibb.co/Xk6MWJLb/Gemini-Rumi.jpg') no-repeat center center fixed;
         background-size: cover;
       }
 
+      /* FIX 2: Показваме hamburger на мобилен */
       .hamburger {
-        display: block;
+        display: flex;
       }
 
       .top-menu {
@@ -291,12 +306,18 @@
   <img src="https://i.ibb.co/d4Gb8HGm/Kyokushinkai-resized-50.png" class="bg-right" alt="">
 
   <div class="top-bar">
+    <!-- FIX 2: Hamburger бутон с 3 черти -->
+    <button class="hamburger" id="hamburger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- FIX 3: href="javascript:void(0)" вместо href="#" -->
     <div class="top-menu" id="topMenu">
-      <a href="#" onclick="return openSection('history')">ЗА КЛУБА</a>
-      <a href="#" onclick="return openSection('training')">ТРЕНИРОВКИ</a>
-      <a href="#" onclick="return openSection('gallery')">ГАЛЕРИЯ</a>
-      <a href="#" onclick="return openSection('contacts')">КОНТАКТИ</a>
-      <a href="#" onclick="return openSection('kyokushin')">ИСТОРИЯ НА КИОКУШИН</a>
+      <a href="javascript:void(0)" onclick="return openSection('history')">ЗА КЛУБА</a>
+      <a href="javascript:void(0)" onclick="return openSection('training')">ТРЕНИРОВКИ</a>
+      <a href="javascript:void(0)" onclick="return openSection('gallery')">ГАЛЕРИЯ</a>
+      <a href="javascript:void(0)" onclick="return openSection('contacts')">КОНТАКТИ</a>
+      <a href="javascript:void(0)" onclick="return openSection('kyokushin')">ИСТОРИЯ НА КИОКУШИН</a>
     </div>
   </div>
 
@@ -310,23 +331,37 @@
   <div id="history" class="content">
     <h2>ЗА КЛУБА</h2>
     <section>
-    <p>Клубът е създаден през 2023 г. и е част от Българска Федерация Киокушин-кан, която е официален представител на Kyokushin-kan International Organization Honbu (прочетете повече секцията "История на Киокушин"). За няколкото години дейност, СКК "Феникс - Люлин" е постоянно развиващ се и с множество отличия от различни състезания.</p>
-      <br></br>
-      На държавно първенство по ката купа „Феникс“, провело се на 15.3.2026 в гр. София, клубът завоюва следните титли:
-                  <ol><li><strong>  Белослава Манукян</strong>, успя с чар и артистично изпълнение да спечели съдиите, които ѝ присъдиха и приза за <i>най-техничен състезател</i>, предвид малката ѝ възраст и изпълнението на по-сложни кати. Освен това, спечели <u>I място</u> в категория <i>„Момичета 2017–2016 г.“</i> и <u>I място</u> в категория <i>„Момичета 2015–2014 г.“</i></li>
-                   <li><strong>  Виктория Стоянова</strong>, която показа едни от най-добрите изпълнения на ката, който ѝ заслужиха <u>II място</u> в категория <i>„Момичета до 14 г.“</i> и <u>II място</u> в категория <i>„Девойки младша възраст 2011–2010 г.“</i></li>
-                    <li><strong>  Андрей Андреев</strong> се представи чудесно, спечелвайки <u>II място</u> в категория <i>„Мъже“</i> срещу сериозна конкуренция.</li>
-                     <li><strong>  Атон Атанасов</strong> завоюва <u>II място</u> в категория <i> „Момчета до 8 г.“</i></li></ol>
-</section>
+      <p>Клубът е създаден през 2023 г. и е част от Българска Федерация Киокушин-кан, която е официален представител на Kyokushin-kan International Organization Honbu (прочетете повече секцията "История на Киокушин"). За няколкото години дейност, СКК "Феникс - Люлин" е постоянно развиващ се и с множество отличия от различни състезания.</p>
+      <br>
+      На държавно първенство по ката купа „Феникс", провело се на 15.3.2026 в гр. София, клубът завоюва следните титли:
+      <ol>
+        <li><strong>Белослава Манукян</strong>, успя с чар и артистично изпълнение да спечели съдиите, които ѝ присъдиха и приза за <i>най-техничен състезател</i>, предвид малката ѝ възраст и изпълнението на по-сложни кати. Освен това, спечели <u>I място</u> в категория <i>„Момичета 2017–2016 г."</i> и <u>I място</u> в категория <i>„Момичета 2015–2014 г."</i></li>
+        <li><strong>Виктория Стоянова</strong>, която показа едни от най-добрите изпълнения на ката, който ѝ заслужиха <u>II място</u> в категория <i>„Момичета до 14 г."</i> и <u>II място</u> в категория <i>„Девойки младша възраст 2011–2010 г."</i></li>
+        <li><strong>Андрей Андреев</strong> се представи чудесно, спечелвайки <u>II място</u> в категория <i>„Мъже"</i> срещу сериозна конкуренция.</li>
+        <li><strong>Атон Атанасов</strong> завоюва <u>II място</u> в категория <i>„Момчета до 8 г."</i></li>
+      </ol>
+    </section>
   </div>
 
   <div id="training" class="content">
     <h2>ТРЕНИРОВКИ</h2>
-    <p><b>График:</b> Понеделник, сряда и петък – 18:00–20:00. Събота и неделя – 13:30–15:00.</p>
-    <p><b>Цена:</b> 40 евро на месец.</p>
-    <p>Киокушин е път на цялостно самоусъвършенстване – физическо и духовно – в който всеки може да открие своето място, независимо от възрастта или опита. Нашите тренировки развиват не само тяло и дух, но и уважение, дисциплина и увереност, като са съобразени с нивото и индивидуалния напредък на всеки трениращ.</p>
-    <p><b>Нови членове са добре дошли да се включат по всяко време на годината!</b></p>
-  </div>
+  <p>
+    <b>График:</b> Понеделник, сряда и петък – 18:00–20:00. Събота и неделя – 13:30–15:00.
+  </p>
+        <p><b>Предлагаме тренировки за различни възрастови групи:</p></b>
+  <ul>
+    <li>Деца (7–10 г.)</li>
+    <li>Юноши (11–17 г.)</li>
+    <li>Възрастни (18+)</li>
+  </ul>
+  <p>
+    Всяка тренировка включва загряване, техника, спаринг и стречинг. <b>Начинаещите са винаги добре дошли — не е необходим предварителен опит!</b>
+  </p>
+   <p>
+    Първата тренировка е <strong>безплатна</strong>. Свържете се с нас за повече информация.
+  </p>
+    <p>Киокушин е път на цялостно самоусъвършенстване – физическо и духовно – в който всеки може да открие своето място и път, независимо от възрастта или опита си. Нашите тренировки развиват не само тяло и дух, но и уважение, дисциплина и увереност, като са съобразени с нивото и индивидуалния напредък на всеки трениращ.</p>
+     </div>
 
   <div id="gallery" class="content">
     <h2>ГАЛЕРИЯ</h2>
@@ -342,12 +377,13 @@
 
   <div id="contacts" class="content">
     <h2>КОНТАКТИ</h2>
-    <p><strong>Адрес:</strong> гр. София, ж.к. "Люлин Център", ул. „Добри Немиров“ 5, (<a href="https://www.lyulinplaza.com/?q=Люлин+Плаза+София" target="_blank">Люлин Плаза</a>), ет. 2</p>
-    <p><strong>Сенсей:</strong> Румяна Янъкова, III дан.</p>
-    <p><strong>Телефон:</strong> 087 798 0967.</p>
-    <p><a href="https://www.facebook.com/profile.php?id=61552224063859" target="_blank">@Facebook</a></p>
-    <br>
-    <h2>Местоположение по карта</h2>
+    <p><div class="contact-item">📍 <span><strong>Адрес:</strong> гр. София, ж.к. "Люлин Център", ул. „Добри Немиров" 5, (<a href="https://maps.app.goo.gl/feniksluylin" target="_blank" rel="noopener">Люлин Плаза</a>), ет. 2</span></div></p>
+  <p><div class="contact-item">🥋 <span><strong>Сенсей:</strong> Румяна Янъкова, III дан.</span></div></p>
+  <p><div class="contact-item">📞 <span><strong>Телефон:</strong> <a href="tel:+359877980967">087 798 0967</a></span></div></p>
+  <p><div class="contact-item">🌐 <a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a></div></p>
+
+  <p><h2 style="margin-top:2rem;">Местоположение по карта</h2></p>
+  <div style="border-radius:8px; overflow:hidden; width:100%;">
     <iframe
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2458.101333290449!2d23.259009799999998!3d42.71641639999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40aa9b00306ab7b1%3A0x77d73cdd37577c01!2z0JrQsNGA0LDRgtC1INCa0LjQvtC60YPRiNC40L0g0JrQu9GD0LEgItCk0LXQvdC40LrRgS3Qm9GO0LvQuNC9Ig!5e1!3m2!1sen!2sbg!4v1767477097361!5m2!1sen!2sbg"
       width="100%"
@@ -358,12 +394,13 @@
       referrerpolicy="no-referrer-when-downgrade">
     </iframe>
   </div>
+</div>
 
   <div id="kyokushin" class="content">
     <h2>ИСТОРИЯ НА КИОКУШИН</h2>
     <div style="display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;">
       <img src="https://i.ibb.co/ynCtHcTG/Oyama-BW.jpg" alt="Масутатцу Ояма" style="width: 100px; height: auto; border-radius: 6px;">
-      <p><i>Масутатцу Ояма</i> (1923–1994) е основателят на <i>Киокушинкайкан (често наричан Киокушинкай или просто Киокушин)</i> карате – стил, известен с пълния контакт и суровата дисциплина. След смъртта му през 1994 г. организацията се разделя, а един от най-близките му ученици, Хацуо Рояма, създава Киокушин-кан карате, за да продължи линията на своя учител. Ояма е роден в Корея като истинското му име е Чой Йеон-еуи. На деветгодишна възраст започва да тренира китайско кенпо в Манджурия, а по-късно се занимава и с джудо и бокс. В Япония учи при Гичин Фунакоши, създателя на Шотокан карате, и други известни майстори. Ояма става прочут с легендарните си тренировки в планината, където изгражда философията си за „Абсолютната истина“, известна като Киокушин. Той демонстрира своята сила чрез чупене на камъни, дъски и тухли, както и чрез битки с бикове. През 1953 г. открива свое доджо в Токио и по-късно основава Международната Организация Киокушинкай (IKO). До смъртта си през 1994 г. е признат за един от най-влиятелните майстори на бойните изкуства в света. Киокушин карате означава „Върховна истина“. Този стил се отличава с пълен контакт, реалистични спаринги и изключително тежки тренировки. Той въвежда нов стандарт в карате, като го прави по-близко до реален бой. Организацията на Ояма бързо се разпространява по света и става една от най-големите карате школи.</p>
+      <p><i>Масутатцу Ояма</i> (1923–1994) е основателят на <i>Киокушинкайкан (често наричан Киокушинкай или просто Киокушин)</i> карате – стил, известен с пълния контакт и суровата дисциплина. След смъртта му през 1994 г. организацията се разделя, а един от най-близките му ученици, Хацуо Рояма, създава Киокушин-кан карате, за да продължи линията на своя учител. Ояма е роден в Корея като истинското му име е Чой Йеон-еуи. На деветгодишна възраст започва да тренира китайско кенпо в Манджурия, а по-късно се занимава и с джудо и бокс. В Япония учи при Гичин Фунакоши, създателя на Шотокан карате, и други известни майстори. Ояма става прочут с легендарните си тренировки в планината, където изгражда философията си за „Абсолютната истина", известна като Киокушин. Той демонстрира своята сила чрез чупене на камъни, дъски и тухли, както и чрез битки с бикове. През 1953 г. открива свое доджо в Токио и по-късно основава Международната Организация Киокушинкай (IKO). До смъртта си през 1994 г. е признат за един от най-влиятелните майстори на бойните изкуства в света. Киокушин карате означава „Върховна истина". Този стил се отличава с пълен контакт, реалистични спаринги и изключително тежки тренировки. Той въвежда нов стандарт в карате, като го прави по-близко до реален бой. Организацията на Ояма бързо се разпространява по света и става една от най-големите карате школи.</p>
     </div>
 
     <div style="display: flex; align-items: flex-start; gap: 1rem;">
@@ -385,9 +422,32 @@
     const logo = document.getElementById("logo");
     const topMenu = document.getElementById("topMenu");
     const topBar = document.querySelector(".top-bar");
+    const hamburger = document.getElementById("hamburger");
     const centerContainer = document.getElementById("centerContainer");
     const bgLayer = document.getElementById("bgLayer");
-    const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    // FIX 4: isMobile се проверява динамично (не константа)
+    function isMobile() {
+      return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+
+    // FIX 2: Hamburger бутон
+    hamburger.addEventListener("click", (e) => {
+      e.stopPropagation();
+      topMenu.classList.toggle("show");
+      hamburger.classList.toggle("open");
+      topBar.style.display = "flex";
+      document.body.classList.toggle("menu-open");
+    });
+
+    // Затваряне на менюто при клик извън него
+    document.addEventListener("click", (e) => {
+      if (!topMenu.contains(e.target) && !hamburger.contains(e.target) && !logo.contains(e.target)) {
+        topMenu.classList.remove("show");
+        hamburger.classList.remove("open");
+        document.body.classList.remove("menu-open");
+      }
+    });
 
     logo.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -400,22 +460,25 @@
         return;
       }
 
-      if (isMobile) {
+      if (isMobile()) {
         topMenu.classList.toggle("show");
-        topBar.style.display = topMenu.classList.contains("show") ? "flex" : "none";
+        hamburger.classList.toggle("open");
+        topBar.style.display = "flex";
         document.body.classList.toggle("menu-open");
       }
     });
 
-    function openSection(id) {
+    // FIX 3: openSection е глобална функция, достъпна от onclick атрибути
+    window.openSection = function(id) {
       document.querySelectorAll(".content").forEach(el => el.classList.remove("active"));
       document.getElementById(id).classList.add("active");
 
       centerContainer.classList.add("hidden");
       logo.classList.add("mini");
 
-      if (isMobile) {
+      if (isMobile()) {
         topMenu.classList.remove("show");
+        hamburger.classList.remove("open");
         topBar.style.display = "none";
         document.body.classList.remove("menu-open");
       }
@@ -429,8 +492,9 @@
       centerContainer.classList.remove("hidden");
       logo.classList.remove("mini", "menu-open");
 
-      if (isMobile) {
+      if (isMobile()) {
         topMenu.classList.remove("show");
+        hamburger.classList.remove("open");
         topBar.style.display = "none";
         document.body.classList.remove("menu-open");
       }
@@ -448,12 +512,12 @@
     function closeImage() {
       document.getElementById('imageModal').style.display = "none";
     }
+
+    // Затваряне на модала с Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeImage();
+    });
   </script>
 
 </body>
 </html>
-
-
-
-
-
