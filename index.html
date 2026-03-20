@@ -438,6 +438,8 @@
       hamburger.classList.toggle("open");
       topBar.style.display = "flex";
       document.body.classList.toggle("menu-open");
+      // Скриване/показване на логото при отваряне на менюто
+      logo.style.visibility = topMenu.classList.contains("show") ? "hidden" : "visible";
     });
 
     // Затваряне на менюто при клик извън него
@@ -446,6 +448,7 @@
         topMenu.classList.remove("show");
         hamburger.classList.remove("open");
         document.body.classList.remove("menu-open");
+        logo.style.visibility = "visible";
       }
     });
 
@@ -480,6 +483,7 @@
         topMenu.classList.remove("show");
         hamburger.classList.remove("open");
         document.body.classList.remove("menu-open");
+        logo.style.visibility = "visible";
       }
 
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -495,6 +499,7 @@
         topMenu.classList.remove("show");
         hamburger.classList.remove("open");
         document.body.classList.remove("menu-open");
+        logo.style.visibility = "visible";
       }
 
       window.scrollTo({ top: 0, behavior: "smooth" });
