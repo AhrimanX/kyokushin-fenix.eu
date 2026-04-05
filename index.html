@@ -230,11 +230,78 @@
       color: #f0e8d8;
     }
 
-    .contact-item {
+    /* CONTACTS */
+    .contact-list {
       display: flex;
-      align-items: flex-start;
+      flex-direction: column;
+      margin-bottom: 1.8rem;
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .contact-row {
+      display: grid;
+      grid-template-columns: 2rem 6rem 1fr;
+      align-items: center;
       gap: 0.6rem;
-      margin-bottom: 0.2rem;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: background 0.2s ease;
+    }
+
+    .contact-row:last-child {
+      border-bottom: none;
+    }
+
+    .contact-row:hover {
+      background: rgba(255,255,255,0.04);
+    }
+
+    .contact-icon {
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .contact-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .contact-value {
+      font-size: 0.88rem;
+      color: #e8e0d8;
+      line-height: 1.5;
+    }
+
+    .map-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.7rem;
+    }
+
+    .map-wrapper {
+      border-radius: 3px;
+      overflow: hidden;
+      border: 1px solid rgba(201,168,76,0.2);
+    }
+
+    @media (max-width: 600px) {
+      .contact-row {
+        grid-template-columns: 1.6rem 5rem 1fr;
+        gap: 0.4rem;
+        padding: 0.7rem 0.8rem;
+      }
+      .contact-label { font-size: 0.64rem; }
+      .contact-value { font-size: 0.82rem; }
     }
 
     .content.active {
@@ -734,24 +801,46 @@
 
   <div id="contacts" class="content">
     <h2>КОНТАКТИ</h2>
-    <p><div class="contact-item">📍 <span><strong>Адрес:</strong> гр. София, ж.к. "Люлин Център", ул. „Добри Немиров" 5, (<a href="https://www.lyulinplaza.com/" target="_blank" rel="noopener">Люлин Плаза</a>), ет. 2</span></div></p>
-  <p><div class="contact-item">🥋 <span><strong>Сенсей:</strong> Румяна Янъкова, III дан.</span></div></p>
-  <p><div class="contact-item">📞 <span><strong>Телефон:</strong> <a href="tel:+359877980967">087 798 0967</a></span></div></p>
-  <p><div class="contact-item">🌐 <a href="https://www.facebook.com/profile.php?id=61552224063859" target="_blank" rel="noopener">Facebook</a></div></p>
 
-  <p><h2 style="margin-top:2rem;">Местоположение по карта</h2></p>
-  <div style="border-radius:8px; overflow:hidden; width:100%;">
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2458.101333290449!2d23.259009799999998!3d42.71641639999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40aa9b00306ab7b1%3A0x77d73cdd37577c01!2z0JrQsNGA0LDRgtC1INCa0LjQvtC60YPRiNC40L0g0JrQu9GD0LEgItCk0LXQvdC40LrRgS3Qm9GO0LvQuNC9Ig!5e1!3m2!1sen!2sbg!4v1767477097361!5m2!1sen!2sbg"
-      width="100%"
-      height="400"
-      style="border:0;"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
+    <div class="contact-list">
+      <div class="contact-row">
+        <span class="contact-icon">📍</span>
+        <span class="contact-label">Адрес</span>
+        <span class="contact-value">гр. София, ж.к. „Люлин Център", ул. „Добри Немиров" 5,
+          <a href="https://www.lyulinplaza.com/" target="_blank" rel="noopener">Люлин Плаза</a>, ет. 2</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-icon">🥋</span>
+        <span class="contact-label">Сенсей</span>
+        <span class="contact-value">Румяна Янъкова, III дан</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-icon">📞</span>
+        <span class="contact-label">Телефон</span>
+        <span class="contact-value"><a href="tel:+359877980967">087 798 0967</a></span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-icon">🌐</span>
+        <span class="contact-label">Facebook</span>
+        <span class="contact-value">
+          <a href="https://www.facebook.com/profile.php?id=61552224063859" target="_blank" rel="noopener">Феникс Люлин</a>
+        </span>
+      </div>
+    </div>
+
+    <div class="map-label">Местоположение</div>
+    <div class="map-wrapper">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2458.101333290449!2d23.259009799999998!3d42.71641639999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40aa9b00306ab7b1%3A0x77d73cdd37577c01!2z0JrQsNGA0LDRgtC1INCa0LjQvtC60YPRiNC40L0g0JrQu9GD0LEgItCk0LXQvdC40LrRgS3Qm9GO0LvQuNC9Ig!5e1!3m2!1sen!2sbg!4v1767477097361!5m2!1sen!2sbg"
+        width="100%"
+        height="380"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
   </div>
-</div>
 
   <div id="kyokushin" class="content">
     <h2>ИСТОРИЯ НА КИОКУШИН</h2>
