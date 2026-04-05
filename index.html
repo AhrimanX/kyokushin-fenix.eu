@@ -325,33 +325,30 @@
     /* GALLERY */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.6rem;
       margin-top: 1rem;
-      text-align: center;
+    }
+
+    .photo-item {
+      overflow: hidden;
+      border-radius: 4px;
+      aspect-ratio: 1 / 1;
+      border: 1px solid rgba(201,168,76,0.15);
     }
 
     .photo-item img {
       width: 100%;
-      border-radius: 4px;
+      height: 100%;
+      object-fit: cover;
       cursor: pointer;
-      border: 1px solid rgba(201,168,76,0.2);
-      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      display: block;
+      transition: transform 0.35s ease, filter 0.35s ease;
     }
 
     .photo-item img:hover {
-      transform: scale(1.03);
-      border-color: var(--gold);
-      box-shadow: 0 6px 24px rgba(0,0,0,0.5);
-    }
-
-    .photo-title {
-      font-family: 'Cinzel', serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      color: var(--gold);
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
+      transform: scale(1.06);
+      filter: brightness(1.1);
     }
 
     /* MODAL */
@@ -449,8 +446,9 @@
         padding: 1.4rem 1.2rem;
       }
 
-      .gallery img {
-        width: 100%;
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.4rem;
       }
     }
     /* TOURNAMENT CARDS */
@@ -791,10 +789,52 @@
     <h2>ГАЛЕРИЯ</h2>
     <div class="gallery">
       <div class="photo-item">
-        <p class="photo-title">Лагер Приморско 2025</p>
-        <img src="https://i.ibb.co/cXJjj46Q/516082360-122232493490074135-4577253926331427853-n.jpg"
-             alt="Лагер Приморско 2025"
-             onclick="openImage(this)">
+        <img src="https://i.ibb.co/tMQP9cR1/0-02-05-5aee39255b25203422ecd46c17ee23f7eccc1d5d375995cfc78bdd871571553b-5d666d52ebde0cca.jpg" alt="Галерия" onclick="openImage(this)">
+      </div>
+      <div class="photo-item">
+        <img src="https://i.ibb.co/nqPqwtgN/0-02-05-843bad4e815872a01d6e138b127e41db7497569dc10183b045876df0fef8af20-78b4fe5cdc6756ec.jpg" alt="Галерия" onclick="openImage(this)">
+      </div>
+      <div class="photo-item">
+        <img src="https://i.ibb.co/KpBtnsQJ/0-02-05-80542451a50989d2ea5ffb2f2ccd7ebadc7648fece625fc09a24b0000ce97e9f-a3984d13d6e7cf0c.jpg" alt="Галерия" onclick="openImage(this)">
+      </div>
+      <div class="photo-item">
+        <img src="https://i.ibb.co/23135z6D/0-02-05-a6166b753cc0915546eb9a20bce611bda300c5b9eec08c09b2b489153baa9ae8-5dd4d913ad916536.jpg" alt="Галерия" onclick="openImage(this)">
+      </div>
+      <div class="photo-item">
+        <img src="https://i.ibb.co/zhC9QPmg/0-02-05-b9387e729ca1cf828bedebc2ec5c57723807477d57aa6e0d2f9900d1a131df2b-b27efd7f1781b1e9.jpg" alt="Галерия" onclick="openImage(this)">
+      </div>
+      <div class="photo-item">
+        <img src="https://i.ibb.co/KcdLL83S/332a1149.jpg" alt="Галерия" onclick="openImage(this)">
+      </div>
+      <div class="photo-item">
+        <img src="https://i.ibb.co/bRY1fSWT/332a1884.jpg" alt="Галерия" onclick="openImage(this)">
+      </div>
+      <div class="photo-item">
+        <img src="https://i.ibb.co/fdf4h7q6/480933539-122210832140074135-478963459343778432-n.jpg" alt="Галерия" onclick="openImage(this)">
+      </div>
+      <div class="photo-item">
+        <img src="https://i.ibb.co/TDkqQKwt/480995645-122210832134074135-1170347054908264736-n.jpg" alt="Галерия" onclick="openImage(this)">
+      </div>
+      <div class="photo-item">
+        <img src="https://i.ibb.co/dJ63ZLZy/480998267-122210832182074135-3174487756047043552-n.jpg" alt="Галерия" onclick="openImage(this)">
+      </div>
+      <div class="photo-item">
+        <img src="https://i.ibb.co/h1n9S42z/503204491-122227608524074135-2550588248246209989-n.jpg" alt="Галерия" onclick="openImage(this)">
+      </div>
+      <div class="photo-item">
+        <img src="https://i.ibb.co/Y4WKBsFW/504142347-122227608446074135-7445840874882753392-n.jpg" alt="Галерия" onclick="openImage(this)">
+      </div>
+      <div class="photo-item">
+        <img src="https://i.ibb.co/qMMnfT03/516082360-122232493490074135-4577253926331427853-n.jpg" alt="Галерия" onclick="openImage(this)">
+      </div>
+      <div class="photo-item">
+        <img src="https://i.ibb.co/xKcFgFSk/546625799-122243851070074135-6947027653989542911-n.jpg" alt="Галерия" onclick="openImage(this)">
+      </div>
+      <div class="photo-item">
+        <img src="https://i.ibb.co/SwxDZNSQ/653706006-122277928850074135-4281470422101731223-n.jpg" alt="Галерия" onclick="openImage(this)">
+      </div>
+      <div class="photo-item">
+        <img src="https://i.ibb.co/9SwhfmF/653710034-122277930158074135-1616935260196753391-n.jpg" alt="Галерия" onclick="openImage(this)">
       </div>
     </div>
   </div>
