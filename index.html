@@ -472,6 +472,114 @@
       margin-top: 0.15rem;
     }
 
+    /* SCHEDULE GRID */
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.5rem;
+      margin: 0 0 1.6rem 0;
+    }
+
+    .schedule-day {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.2rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-top: 2px solid var(--gold);
+      border-radius: 3px;
+      padding: 0.75rem 0.3rem;
+      transition: background 0.2s ease;
+    }
+
+    .schedule-day:hover {
+      background: rgba(255,255,255,0.09);
+    }
+
+    .schedule-day.inactive {
+      border-top-color: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.07);
+      opacity: 0.4;
+    }
+
+    .schedule-day.weekend {
+      border-top-color: var(--red);
+    }
+
+    .day-name {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+
+    .schedule-day.inactive .day-name {
+      color: rgba(232,224,216,0.4);
+    }
+
+    .schedule-day.weekend .day-name {
+      color: #e07878;
+    }
+
+    .day-time {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #f0e8d8;
+      letter-spacing: 0.02em;
+    }
+
+    .day-sep {
+      font-size: 0.65rem;
+      color: rgba(232,224,216,0.35);
+    }
+
+    .day-rest {
+      font-size: 1rem;
+      color: rgba(232,224,216,0.2);
+      margin-top: 0.4rem;
+    }
+
+    .age-groups {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.4rem;
+      padding: 0.8rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(201,168,76,0.12);
+      border-radius: 3px;
+    }
+
+    .age-group {
+      font-size: 0.82rem;
+      color: #d4cbc0;
+      letter-spacing: 0.04em;
+    }
+
+    .age-group span {
+      color: var(--gold);
+      margin-left: 0.3rem;
+    }
+
+    @media (max-width: 600px) {
+      .schedule-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.4rem;
+      }
+
+      .schedule-day.inactive:nth-child(2),
+      .schedule-day.inactive:nth-child(4) {
+        display: none;
+      }
+
+      .day-time { font-size: 0.75rem; }
+      .day-name  { font-size: 0.62rem; }
+    }
+
   </style>
 </head>
 
@@ -559,23 +667,58 @@
 
   <div id="training" class="content">
     <h2>ТРЕНИРОВКИ</h2>
-  <p>
-    <b>График:</b> Понеделник, сряда и петък – 18:00–20:00. Събота и неделя – 13:30–15:00.
-  </p>
-        <p><b>Предлагаме тренировки за различни възрастови групи:</p></b>
-  <ul>
-    <li>Деца (7–10 г.)</li>
-    <li>Юноши (11–17 г.)</li>
-    <li>Възрастни (18+)</li>
-  </ul>
-  <p>
-    Всяка тренировка включва загряване, техника, спаринг и стречинг. Начинаещите са винаги добре дошли — не е необходим предварителен опит.
-  </p>
-   <p>
-    Първата тренировка е <strong>безплатна</strong>. Свържете се с нас за повече информация.
-  </p>
+
+    <div class="schedule-grid">
+      <div class="schedule-day">
+        <div class="day-name">ПОН</div>
+        <div class="day-time">18:00</div>
+        <div class="day-sep">–</div>
+        <div class="day-time">20:00</div>
+      </div>
+      <div class="schedule-day inactive">
+        <div class="day-name">ВТ</div>
+        <div class="day-rest">—</div>
+      </div>
+      <div class="schedule-day">
+        <div class="day-name">СРЯ</div>
+        <div class="day-time">18:00</div>
+        <div class="day-sep">–</div>
+        <div class="day-time">20:00</div>
+      </div>
+      <div class="schedule-day inactive">
+        <div class="day-name">ЧЕТ</div>
+        <div class="day-rest">—</div>
+      </div>
+      <div class="schedule-day">
+        <div class="day-name">ПЕТ</div>
+        <div class="day-time">18:00</div>
+        <div class="day-sep">–</div>
+        <div class="day-time">20:00</div>
+      </div>
+      <div class="schedule-day weekend">
+        <div class="day-name">СЪБ</div>
+        <div class="day-time">13:30</div>
+        <div class="day-sep">–</div>
+        <div class="day-time">15:00</div>
+      </div>
+      <div class="schedule-day weekend">
+        <div class="day-name">НЕД</div>
+        <div class="day-time">13:30</div>
+        <div class="day-sep">–</div>
+        <div class="day-time">15:00</div>
+      </div>
+    </div>
+
+    <div class="age-groups">
+      <div class="age-group">🥋 Деца <span>7–10 г.</span></div>
+      <div class="age-group">🥋 Юноши <span>11–17 г.</span></div>
+      <div class="age-group">🥋 Възрастни <span>18+</span></div>
+    </div>
+
+    <p>Всяка тренировка включва загряване, техника, спаринг и стречинг. Начинаещите са винаги добре дошли — не е необходим предварителен опит.</p>
+    <p>Първата тренировка е <strong>безплатна</strong>. Свържете се с нас за повече информация.</p>
     <p>Киокушин е път на цялостно самоусъвършенстване – физическо и духовно – в който всеки може да открие своето място и път, независимо от възрастта или опита си. Нашите тренировки развиват не само тяло и дух, но и уважение, дисциплина и увереност, като са съобразени с нивото и индивидуалния напредък на всеки трениращ.</p>
-     </div>
+  </div>
 
   <div id="gallery" class="content">
     <h2>ГАЛЕРИЯ</h2>
