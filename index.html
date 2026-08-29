@@ -577,6 +577,27 @@
       letter-spacing: 0.04em;
     }
 
+    .tournament-poster-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.4rem;
+    }
+
+    .tournament-poster {
+      width: 220px;
+      max-width: 60%;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid rgba(201,168,76,0.35);
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .tournament-poster:hover {
+      transform: scale(1.03);
+      border-color: rgba(201,168,76,0.7);
+    }
+
     .achievement-cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -953,6 +974,10 @@
           <div class="tournament-title">Държавно първенство по ката — Купа „Феникс"</div>
           <div class="tournament-meta">15-и март 2026 &nbsp;·&nbsp; гр. София</div>
         </div>
+      </div>
+
+      <div class="tournament-poster-wrap">
+        <img src="https://i.ibb.co/vx4JYZkv/Kata-Feniks-A3.png" alt="Плакат Купа „Феникс" — държавно първенство по ката" class="tournament-poster" onclick="openImage(this)">
       </div>
 
       <div class="achievement-cards">
