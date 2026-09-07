@@ -692,6 +692,28 @@
       filter: grayscale(40%);
     }
 
+    .news-photo {
+      width: 330px;
+      max-width: 70%;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid rgba(201,168,76,0.35);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .news-photo:hover {
+      transform: scale(1.03);
+      border-color: rgba(201,168,76,0.7);
+    }
+
+    .news-photo-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
     .news-header {
       display: flex;
       align-items: center;
@@ -879,6 +901,21 @@
     <section>
       <p>Клубът е създаден през 2023 г. и е част от <a href="https://kyokushinkan.bg/" target="_blank" rel="noopener">Българска Федерация Киокушин-кан</a>, която е официален представител на <a href="https://www.kyokushinkan.org/" target="_blank" rel="noopener">Kyokushin-kan International Organization Honbu</a> (прочетете повече секцията "История на Киокушин"). За няколкото години дейност, СКК "Феникс - Люлин" е постоянно развиващ се и с множество отличия от различни състезания.</p>
     </section>
+
+    <div class="news-block">
+      <div class="news-header">
+        <span class="news-icon">📢</span>
+        <div>
+          <div class="news-title">Представяне на клуба на експо "След звънеца"</div>
+          <div class="news-meta">11-ти септември 2026</div>
+        </div>
+      </div>
+      <p class="news-text">На 11.09 от 11:30 ч. на сцената на <a href="https://www.facebook.com/events/926402627181284" target="_blank" rel="noopener">West Mall</a> клубът ще направи представяне по повод експо "След звънеца".</p>
+      <div class="news-photo-wrap">
+        <img src="https://i.ibb.co/krM8gYB/Expo-OK.jpg" alt="Експо След звънеца" class="news-photo" onclick="openImage(this)">
+      </div>
+    </div>
+    <div style="clear: both;"></div>
 
     <div class="memorial-block">
       <div class="news-header">
