@@ -78,6 +78,9 @@
       --border-accent: 2px solid var(--red);
     }
 
+    /* ============================================================
+       FIX 1: DESKTOP BACKGROUND — Sketch of two karate
+       ============================================================ */
     body {
       margin: 0;
       font-family: 'Lato', sans-serif;
@@ -148,7 +151,6 @@
     .bg-right { right: 0; }
 
     /* LOGO */
-    /* FIX 1: Анимацията pulse важи само за нормалното лого, не за mini */
     .logo {
       position: fixed;
       top: 50%;
@@ -173,7 +175,6 @@
       left: 50%;
       transform: translateX(-50%);
       height: 70px !important;
-      /* FIX 1: mini логото НЕ пулсира */
       animation: none;
       z-index: 2000;
     }
@@ -201,7 +202,6 @@
       -webkit-backdrop-filter: blur(6px);
     }
 
-    /* FIX 2: Hamburger – стилизиран с 3 черти вместо unicode символ */
     .hamburger {
       display: none;
       position: absolute;
@@ -278,6 +278,8 @@
     .content {
       display: none;
       padding: 2.5rem 2.8rem;
+      /* FIX 8: увеличен bottom padding, за да не се застъпва footer-ът с текста */
+      padding-bottom: 90px;
       max-width: 820px;
       margin: 180px auto 2rem auto;
       background: var(--black-glass-heavy);
@@ -319,6 +321,32 @@
     strong {
       font-weight: 700;
       color: #f0e8d8;
+    }
+
+    /* FIX 3: "Назад" бутон за ясна UX афорданс */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 1rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      background: rgba(201,168,76,0.12);
+      border-color: var(--gold);
+      color: #e0c070;
     }
 
     /* CONTACTS */
@@ -487,7 +515,38 @@
 
     .close:hover { opacity: 1; }
 
-    /* MOBILE */
+    /* FIX 6: Lightbox навигация (стрелки за предишна/следваща снимка) */
+    .modal-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gold);
+      font-size: 42px;
+      font-weight: 300;
+      cursor: pointer;
+      opacity: 0.6;
+      user-select: none;
+      padding: 0 16px;
+      transition: opacity 0.2s ease;
+      font-family: 'Lato', sans-serif;
+      line-height: 1;
+    }
+
+    .modal-nav:hover { opacity: 1; }
+    .modal-nav.prev { left: -70px; }
+    .modal-nav.next { right: -70px; }
+
+    @media (max-width: 900px) {
+      .modal-nav.prev { left: 4px; }
+      .modal-nav.next { right: 4px; }
+      .modal-nav { font-size: 32px; background: rgba(0,0,0,0.4); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; padding: 0; }
+    }
+
+    /* ============================================================
+       FIX 2: MOBILE BACKGROUND — Gemini Rumi
+       Това правило трябва да е ПЪРВО в media query-то, за да
+       презапише desktop background-а.
+       ============================================================ */
     @media (max-width: 600px), (max-aspect-ratio: 9/16) {
       body {
         background: url('https://i.ibb.co/Xk6MWJLb/Gemini-Rumi.jpg') no-repeat center center fixed;
@@ -496,6 +555,12 @@
 
       .hamburger {
         display: flex;
+      }
+
+      /* FIX 7: скриване на декоративните kanji изображения на мобилни */
+      .bg-left,
+      .bg-right {
+        display: none;
       }
 
       .top-menu {
@@ -535,6 +600,8 @@
       .content {
         margin: 190px 1rem 2rem 1rem;
         padding: 1.4rem 1.2rem;
+        /* FIX 8: mobile също получава bottom padding */
+        padding-bottom: 80px;
       }
 
       .gallery {
@@ -874,12 +941,10 @@
   <img src="https://i.ibb.co/d4Gb8HGm/Kyokushinkai-resized-50.png" class="bg-right" alt="">
 
   <div class="top-bar">
-    <!-- FIX 2: Hamburger бутон с 3 черти -->
     <button class="hamburger" id="hamburger" aria-label="Меню">
       <span></span><span></span><span></span>
     </button>
 
-    <!-- FIX 3: href="javascript:void(0)" вместо href="#" -->
     <div class="top-menu" id="topMenu">
       <a href="javascript:void(0)" onclick="return openSection('history')">ЗА КЛУБА</a>
       <a href="javascript:void(0)" onclick="return openSection('training')">ТРЕНИРОВКИ</a>
@@ -897,6 +962,8 @@
        alt="Феникс Люлин Лого">
 
   <div id="history" class="content">
+    <!-- FIX 3: Ясен "Назад" бутон -->
+    <button class="back-btn" onclick="closeSection()">← Назад</button>
     <h2>ЗА КЛУБА</h2>
     <section>
       <p>Клубът е създаден през 2023 г. и е част от <a href="https://kyokushinkan.bg/" target="_blank" rel="noopener">Българска Федерация Киокушин-кан</a>, която е официален представител на <a href="https://www.kyokushinkan.org/" target="_blank" rel="noopener">Kyokushin-kan International Organization Honbu</a> (прочетете повече секцията "История на Киокушин"). За няколкото години дейност, СКК "Феникс - Люлин" е постоянно развиващ се и с множество отличия от различни състезания.</p>
@@ -912,7 +979,7 @@
       </div>
       <p class="news-text">На 11.09 от 11:30 ч. на сцената на West Mall клубът ще направи представяне по повод началото на учебната 2026/2027 г. по време на <a href="https://www.facebook.com/photo/?fbid=1372560194965740&set=gm.933165109838369&idorvanity=926402627181284" target="_blank" rel="noopener">експо "След звънеца"</a>.</p>
       <div class="news-photo-wrap">
-        <img src="https://i.ibb.co/krM8gYB/Expo-OK.jpg" alt="Експо След звънеца" class="news-photo" onclick="openImage(this)">
+        <img src="https://i.ibb.co/krM8gYB/Expo-OK.jpg" alt="Експо След звънеца" class="news-photo" onclick="openImage(this)" loading="lazy">
       </div>
     </div>
     <div style="clear: both;"></div>
@@ -925,7 +992,7 @@
           <div class="news-meta">3-ти август 2026</div>
         </div>
       </div>
-      <img src="https://i.ibb.co/DNTLZ5L/IMG-20260803-191039.jpg" alt="Кайчо Хацуо Рояма" class="memorial-photo">
+      <img src="https://i.ibb.co/DNTLZ5L/IMG-20260803-191039.jpg" alt="Кайчо Хацуо Рояма" class="memorial-photo" loading="lazy">
       <p class="news-text">СК „Феникс - Люлин" съобщава с прискърбие, че основателят на Киокушин-кан Кайчо Хацуо Рояма е поел своя път към небето на 3-ти август в 16:48 японско време.</p>
       <p class="news-text">С дълбок поклон благодарим за делото, на което ние ще бъдем достойни последователи.</p>
       <div class="news-signoff" style="clear: left;">Ус!</div>
@@ -1025,7 +1092,7 @@
       </div>
 
       <div class="tournament-poster-wrap">
-        <img src="https://i.ibb.co/vx4JYZkv/Kata-Feniks-A3.png" alt="Плакат Купа „Феникс" — държавно първенство по ката" class="tournament-poster" onclick="openImage(this)">
+        <img src="https://i.ibb.co/vx4JYZkv/Kata-Feniks-A3.png" alt="Плакат Купа „Феникс" — държавно първенство по ката" class="tournament-poster" onclick="openImage(this)" loading="lazy">
       </div>
 
       <div class="achievement-cards">
@@ -1054,8 +1121,9 @@
           </div>
         </div>
 
+        <!-- FIX 9: поправен правопис — "Атон" → "Антон" -->
         <div class="achievement-card">
-          <div class="athlete-name">Атон Атанасов</div>
+          <div class="athlete-name">Антон Атанасов</div>
           <div class="achievement-medals">
             <span class="medal silver">🥈 II място — Момчета до 8 г.</span>
           </div>
@@ -1277,6 +1345,7 @@
   </div>
 
   <div id="training" class="content">
+    <button class="back-btn" onclick="closeSection()">← Назад</button>
     <h2>ТРЕНИРОВКИ</h2>
 
     <div class="schedule-grid">
@@ -1332,78 +1401,81 @@
   </div>
 
   <div id="gallery" class="content">
+    <button class="back-btn" onclick="closeSection()">← Назад</button>
     <h2>ГАЛЕРИЯ</h2>
     <div class="gallery">
+      <!-- FIX 5: добавено loading="lazy" към всички галерийни изображения -->
       <div class="photo-item">
-        <img src="https://i.ibb.co/tMQP9cR1/0-02-05-5aee39255b25203422ecd46c17ee23f7eccc1d5d375995cfc78bdd871571553b-5d666d52ebde0cca.jpg" alt="Тренировка по киокушин карате – СКК Феникс-Люлин, София" onclick="openImage(this)">
+        <img src="https://i.ibb.co/tMQP9cR1/0-02-05-5aee39255b25203422ecd46c17ee23f7eccc1d5d375995cfc78bdd871571553b-5d666d52ebde0cca.jpg" alt="Тренировка по киокушин карате – СКК Феникс-Люлин, София" onclick="openImage(this)" loading="lazy">
       </div>
       <div class="photo-item">
-        <img src="https://i.ibb.co/nqPqwtgN/0-02-05-843bad4e815872a01d6e138b127e41db7497569dc10183b045876df0fef8af20-78b4fe5cdc6756ec.jpg" alt="Киокушин карате деца Люлин – клуб Феникс" onclick="openImage(this)">
+        <img src="https://i.ibb.co/nqPqwtgN/0-02-05-843bad4e815872a01d6e138b127e41db7497569dc10183b045876df0fef8af20-78b4fe5cdc6756ec.jpg" alt="Киокушин карате деца Люлин – клуб Феникс" onclick="openImage(this)" loading="lazy">
       </div>
       <div class="photo-item">
-        <img src="https://i.ibb.co/KpBtnsQJ/0-02-05-80542451a50989d2ea5ffb2f2ccd7ebadc7648fece625fc09a24b0000ce97e9f-a3984d13d6e7cf0c.jpg" alt="Карате тренировка юноши – Феникс-Люлин, кв. Люлин" onclick="openImage(this)">
+        <img src="https://i.ibb.co/KpBtnsQJ/0-02-05-80542451a50989d2ea5ffb2f2ccd7ebadc7648fece625fc09a24b0000ce97e9f-a3984d13d6e7cf0c.jpg" alt="Карате тренировка юноши – Феникс-Люлин, кв. Люлин" onclick="openImage(this)" loading="lazy">
       </div>
       <div class="photo-item">
-        <img src="https://i.ibb.co/23135z6D/0-02-05-a6166b753cc0915546eb9a20bce611bda300c5b9eec08c09b2b489153baa9ae8-5dd4d913ad916536.jpg" alt="Спаринг киокушин карате – клуб Феникс, София" onclick="openImage(this)">
+        <img src="https://i.ibb.co/23135z6D/0-02-05-a6166b753cc0915546eb9a20bce611bda300c5b9eec08c09b2b489153baa9ae8-5dd4d913ad916536.jpg" alt="Спаринг киокушин карате – клуб Феникс, София" onclick="openImage(this)" loading="lazy">
       </div>
       <div class="photo-item">
-        <img src="https://i.ibb.co/zhC9QPmg/0-02-05-b9387e729ca1cf828bedebc2ec5c57723807477d57aa6e0d2f9900d1a131df2b-b27efd7f1781b1e9.jpg" alt="Карате за деца София – СКК Феникс-Люлин" onclick="openImage(this)">
+        <img src="https://i.ibb.co/zhC9QPmg/0-02-05-b9387e729ca1cf828bedebc2ec5c57723807477d57aa6e0d2f9900d1a131df2b-b27efd7f1781b1e9.jpg" alt="Карате за деца София – СКК Феникс-Люлин" onclick="openImage(this)" loading="lazy">
       </div>
       <div class="photo-item">
-        <img src="https://i.ibb.co/KcdLL83S/332a1149.jpg" alt="Киокушинкай карате тренировка – Люлин Плаза" onclick="openImage(this)">
+        <img src="https://i.ibb.co/KcdLL83S/332a1149.jpg" alt="Киокушинкай карате тренировка – Люлин Плаза" onclick="openImage(this)" loading="lazy">
       </div>
       <div class="photo-item">
-        <img src="https://i.ibb.co/bRY1fSWT/332a1884.jpg" alt="Карате клуб Люлин – бойни изкуства за деца и възрастни" onclick="openImage(this)">
+        <img src="https://i.ibb.co/bRY1fSWT/332a1884.jpg" alt="Карате клуб Люлин – бойни изкуства за деца и възрастни" onclick="openImage(this)" loading="lazy">
       </div>
       <div class="photo-item">
-        <img src="https://i.ibb.co/fdf4h7q6/480933539-122210832140074135-478963459343778432-n.jpg" alt="Японски бойни изкуства – киокушин карате клуб Феникс" onclick="openImage(this)">
+        <img src="https://i.ibb.co/fdf4h7q6/480933539-122210832140074135-478963459343778432-n.jpg" alt="Японски бойни изкуства – киокушин карате клуб Феникс" onclick="openImage(this)" loading="lazy">
       </div>
       <div class="photo-item">
-        <img src="https://i.ibb.co/TDkqQKwt/480995645-122210832134074135-1170347054908264736-n.jpg" alt="Карате за юноши и тийнейджъри – СКК Феникс-Люлин" onclick="openImage(this)">
+        <img src="https://i.ibb.co/TDkqQKwt/480995645-122210832134074135-1170347054908264736-n.jpg" alt="Карате за юноши и тийнейджъри – СКК Феникс-Люлин" onclick="openImage(this)" loading="lazy">
       </div>
       <div class="photo-item">
-        <img src="https://i.ibb.co/dJ63ZLZy/480998267-122210832182074135-3174487756047043552-n.jpg" alt="Киокушин карате техника – клуб Феникс, кв. Люлин" onclick="openImage(this)">
+        <img src="https://i.ibb.co/dJ63ZLZy/480998267-122210832182074135-3174487756047043552-n.jpg" alt="Киокушин карате техника – клуб Феникс, кв. Люлин" onclick="openImage(this)" loading="lazy">
       </div>
       <div class="photo-item">
-        <img src="https://i.ibb.co/h1n9S42z/503204491-122227608524074135-2550588248246209989-n.jpg" alt="Карате за самозащита София – Феникс-Люлин" onclick="openImage(this)">
+        <img src="https://i.ibb.co/h1n9S42z/503204491-122227608524074135-2550588248246209989-n.jpg" alt="Карате за самозащита София – Феникс-Люлин" onclick="openImage(this)" loading="lazy">
       </div>
       <div class="photo-item">
-        <img src="https://i.ibb.co/Y4WKBsFW/504142347-122227608446074135-7445840874882753392-n.jpg" alt="Спортно карате деца – клуб Феникс, Люлин" onclick="openImage(this)">
+        <img src="https://i.ibb.co/Y4WKBsFW/504142347-122227608446074135-7445840874882753392-n.jpg" alt="Спортно карате деца – клуб Феникс, Люлин" onclick="openImage(this)" loading="lazy">
       </div>
       <div class="photo-item">
-        <img src="https://i.ibb.co/qMMnfT03/516082360-122232493490074135-4577253926331427853-n.jpg" alt="Лагер Приморско 2025 – СКК Феникс-Люлин" onclick="openImage(this)">
+        <img src="https://i.ibb.co/qMMnfT03/516082360-122232493490074135-4577253926331427853-n.jpg" alt="Лагер Приморско 2025 – СКК Феникс-Люлин" onclick="openImage(this)" loading="lazy">
       </div>
       <div class="photo-item">
-        <img src="https://i.ibb.co/xKcFgFSk/546625799-122243851070074135-6947027653989542911-n.jpg" alt="Киокушин карате състезание – клуб Феникс, София" onclick="openImage(this)">
+        <img src="https://i.ibb.co/xKcFgFSk/546625799-122243851070074135-6947027653989542911-n.jpg" alt="Киокушин карате състезание – клуб Феникс, София" onclick="openImage(this)" loading="lazy">
       </div>
       <div class="photo-item">
-        <img src="https://i.ibb.co/SwxDZNSQ/653706006-122277928850074135-4281470422101731223-n.jpg" alt="Карате тренировка Люлин – бойни изкуства София" onclick="openImage(this)">
+        <img src="https://i.ibb.co/SwxDZNSQ/653706006-122277928850074135-4281470422101731223-n.jpg" alt="Карате тренировка Люлин – бойни изкуства София" onclick="openImage(this)" loading="lazy">
       </div>
       <div class="photo-item">
-        <img src="https://i.ibb.co/9SwhfmF/653710034-122277930158074135-1616935260196753391-n.jpg" alt="СКК Феникс-Люлин – киокушин карате клуб, кв. Люлин, София" onclick="openImage(this)">
+        <img src="https://i.ibb.co/9SwhfmF/653710034-122277930158074135-1616935260196753391-n.jpg" alt="СКК Феникс-Люлин – киокушин карате клуб, кв. Люлин, София" onclick="openImage(this)" loading="lazy">
       </div>
       <div class="photo-item">
-        <img src="https://i.ibb.co/d4r0G8kM/756345083-1579900950587314-8407445446604964115-n.jpg" alt="Посещение на Хаято Чида – СКК Феникс-Люлин, София" onclick="openImage(this)">
+        <img src="https://i.ibb.co/d4r0G8kM/756345083-1579900950587314-8407445446604964115-n.jpg" alt="Посещение на Хаято Чида – СКК Феникс-Люлин, София" onclick="openImage(this)" loading="lazy">
       </div>
       <div class="photo-item">
-        <img src="https://i.ibb.co/6Jn7sXCp/757027227-27213695318309914-4048696076548008290-n.jpg" alt="Тренировка с Хаято Чида – Феникс-Люлин, Люлин" onclick="openImage(this)">
+        <img src="https://i.ibb.co/6Jn7sXCp/757027227-27213695318309914-4048696076548008290-n.jpg" alt="Тренировка с Хаято Чида – Феникс-Люлин, Люлин" onclick="openImage(this)" loading="lazy">
       </div>
       <div class="photo-item">
-        <img src="https://i.ibb.co/hxS5xxdV/758253030-1356220319821607-8128061617194670897-n.jpg" alt="Киокушин семинар с Хаято Чида – клуб Феникс, София" onclick="openImage(this)">
+        <img src="https://i.ibb.co/hxS5xxdV/758253030-1356220319821607-8128061617194670897-n.jpg" alt="Киокушин семинар с Хаято Чида – клуб Феникс, София" onclick="openImage(this)" loading="lazy">
       </div>
       <div class="photo-item">
-        <img src="https://i.ibb.co/PZqQN6gx/758520318-1721888759032409-4183372613259647425-n.jpg" alt="Хаято Чида и СКК Феникс-Люлин – киокушин карате, кв. Люлин" onclick="openImage(this)">
+        <img src="https://i.ibb.co/PZqQN6gx/758520318-1721888759032409-4183372613259647425-n.jpg" alt="Хаято Чида и СКК Феникс-Люлин – киокушин карате, кв. Люлин" onclick="openImage(this)" loading="lazy">
       </div>
       <div class="photo-item">
-        <img src="https://i.ibb.co/mCDTRG0L/758964225-10232594709505605-6646708399678056145-n.jpg" alt="Посещение на Хаято Чида – СКК Феникс-Люлин, София" onclick="openImage(this)">
+        <img src="https://i.ibb.co/mCDTRG0L/758964225-10232594709505605-6646708399678056145-n.jpg" alt="Посещение на Хаято Чида – СКК Феникс-Люлин, София" onclick="openImage(this)" loading="lazy">
       </div>
       <div class="photo-item">
-        <img src="https://i.ibb.co/hR52rjr3/758964585-10232594711105645-2284919881836965066-n.jpg" alt="Хаято Чида на тренировка – клуб Феникс-Люлин, София" onclick="openImage(this)">
+        <img src="https://i.ibb.co/hR52rjr3/758964585-10232594711105645-2284919881836965066-n.jpg" alt="Хаято Чида на тренировка – клуб Феникс-Люлин, София" onclick="openImage(this)" loading="lazy">
       </div>
     </div>
   </div>
 
   <div id="contacts" class="content">
+    <button class="back-btn" onclick="closeSection()">← Назад</button>
     <h2>КОНТАКТИ</h2>
 
     <div class="contact-list">
@@ -1447,14 +1519,15 @@
   </div>
 
   <div id="kyokushin" class="content">
+    <button class="back-btn" onclick="closeSection()">← Назад</button>
     <h2>ИСТОРИЯ НА КИОКУШИН</h2>
     <div style="display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;">
-      <img src="https://i.ibb.co/ynCtHcTG/Oyama-BW.jpg" alt="Масутатцу Ояма" style="width: 100px; height: auto; border-radius: 6px;">
+      <img src="https://i.ibb.co/ynCtHcTG/Oyama-BW.jpg" alt="Масутатцу Ояма" style="width: 100px; height: auto; border-radius: 6px;" loading="lazy">
       <p><i>Масутатцу Ояма</i> (1923–1994) е основателят на <i>Киокушинкайкан (често наричан Киокушинкай или просто Киокушин)</i> карате – стил, известен с пълния контакт и суровата дисциплина. Ояма е роден в Корея като истинското му име е Чой Йеон-еуи. На деветгодишна възраст започва да тренира китайско кенпо в Манджурия, а по-късно се занимава и с джудо и бокс. В Япония учи при Гичин Фунакоши, създателя на Шотокан карате, както и при и други известни майстори. Става прочут с легендарните си тренировки в планината, където изгражда философията си за „Абсолютната истина", известна като Киокушин. Той демонстрира своята сила чрез чупене на камъни, дъски и тухли, както и чрез битки с бикове. През 1953 г. открива свое доджо в Токио и по-късно основава Международната Организация Киокушинкай (IKO). До смъртта си през 1994 г. е признат за един от най-влиятелните майстори на бойните изкуства в света. Киокушин карате означава „Върховна истина". Този стил се отличава с пълен контакт, реалистични спаринги и изключително тежки тренировки. Ояма въвежда нов стандарт в карате, като го прави по-близко до реален бой. Организацията му бързо се разпространява по света и става една от най-големите карате школи.</p>
     </div>
 
     <div style="display: flex; align-items: flex-start; gap: 1rem;">
-      <img src="https://i.ibb.co/DNTLZ5L/IMG-20260803-191039.jpg" alt="Хацуо Рояма" style="width: 100px; height: auto; border-radius: 6px;">
+      <img src="https://i.ibb.co/DNTLZ5L/IMG-20260803-191039.jpg" alt="Хацуо Рояма" style="width: 100px; height: auto; border-radius: 6px;" loading="lazy">
       <p style="margin: 0;">
         <i>Хацуо Рояма</i> (1948-2026) e един от най-близките ученици на Ояма и негов доверен наследник. След смъртта на учителя си през 1994 г. в международната организация настъпват разделения и спорове за лидерството. Рояма, заедно с други ученици, създава <i>Киокушин-кан</i> карате – организация, която има за цел да запази духа и методите на оригиналния Киокушин. Киокушин-кан се отличава с акцент върху традицията, дисциплината и реалния боен дух, като същевременно развива модерна структура за международни състезания и усъвършенстване и обогатяване на техниките и методите за изграждане на умения.
       </p>
@@ -1468,7 +1541,10 @@
   <div id="imageModal" class="modal" onclick="closeImage()">
     <div class="modal-inner" onclick="event.stopPropagation()">
       <span class="close" onclick="closeImage()">×</span>
+      <!-- FIX 6: стрелки за навигация в lightbox -->
+      <span class="modal-nav prev" onclick="event.stopPropagation(); navigateImage(-1)">‹</span>
       <img class="modal-content" id="modalImg" alt="">
+      <span class="modal-nav next" onclick="event.stopPropagation(); navigateImage(1)">›</span>
     </div>
   </div>
 
@@ -1480,23 +1556,25 @@
     const centerContainer = document.getElementById("centerContainer");
     const bgLayer = document.getElementById("bgLayer");
 
-    // FIX 4: isMobile се проверява динамично (не константа)
+    // FIX 6: събиране на всички галерийни/кликаеми изображения за навигация в lightbox
+    function getGalleryImages() {
+      return Array.from(document.querySelectorAll('img[onclick*="openImage"]'));
+    }
+    let currentImageIndex = -1;
+
     function isMobile() {
       return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     }
 
-    // FIX 2: Hamburger бутон
     hamburger.addEventListener("click", (e) => {
       e.stopPropagation();
       topMenu.classList.toggle("show");
       hamburger.classList.toggle("open");
       topBar.style.display = "flex";
       document.body.classList.toggle("menu-open");
-      // Скриване/показване на логото при отваряне на менюто
       logo.style.visibility = topMenu.classList.contains("show") ? "hidden" : "visible";
     });
 
-    // Затваряне на менюто при клик извън него
     document.addEventListener("click", (e) => {
       if (!topMenu.contains(e.target) && !hamburger.contains(e.target) && !logo.contains(e.target)) {
         topMenu.classList.remove("show");
@@ -1526,7 +1604,23 @@
       }
     });
 
-    // FIX 3: openSection е глобална функция, достъпна от onclick атрибути
+    // FIX 3: closeSection е глобална, извиква се от "Назад" бутоните
+    window.closeSection = function() {
+      document.querySelectorAll(".content").forEach(s => s.classList.remove("active"));
+      document.querySelectorAll(".top-menu a").forEach(a => a.style.color = "");
+      centerContainer.classList.remove("hidden");
+      logo.classList.remove("mini", "menu-open");
+
+      if (isMobile()) {
+        topMenu.classList.remove("show");
+        hamburger.classList.remove("open");
+        document.body.classList.remove("menu-open");
+        logo.style.visibility = "visible";
+      }
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
     window.openSection = function(id) {
       document.querySelectorAll(".content").forEach(el => el.classList.remove("active"));
       document.getElementById(id).classList.add("active");
@@ -1550,35 +1644,47 @@
     }
 
     bgLayer.addEventListener("click", () => {
-      document.querySelectorAll(".content").forEach(s => s.classList.remove("active"));
-      document.querySelectorAll(".top-menu a").forEach(a => a.style.color = "");
-      centerContainer.classList.remove("hidden");
-      logo.classList.remove("mini", "menu-open");
-
-      if (isMobile()) {
-        topMenu.classList.remove("show");
-        hamburger.classList.remove("open");
-        document.body.classList.remove("menu-open");
-        logo.style.visibility = "visible";
-      }
-
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      closeSection();
     });
 
-    function openImage(img) {
+    // FIX 6: openImage записва индекса и позволява навигация
+    window.openImage = function(img) {
       const modal = document.getElementById('imageModal');
       const modalImg = document.getElementById('modalImg');
+      const images = getGalleryImages();
+      currentImageIndex = images.indexOf(img);
       modal.style.display = "flex";
       modalImg.src = img.src;
+      modalImg.alt = img.alt;
+    }
+
+    // FIX 6: навигация между изображенията
+    window.navigateImage = function(direction) {
+      const images = getGalleryImages();
+      if (!images.length) return;
+      currentImageIndex = (currentImageIndex + direction + images.length) % images.length;
+      const modalImg = document.getElementById('modalImg');
+      modalImg.src = images[currentImageIndex].src;
+      modalImg.alt = images[currentImageIndex].alt;
     }
 
     function closeImage() {
       document.getElementById('imageModal').style.display = "none";
+      currentImageIndex = -1;
     }
 
-    // Затваряне на модала с Escape
+    // FIX 6: клавиатурна навигация в lightbox (← → Escape)
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeImage();
+      const modal = document.getElementById('imageModal');
+      const isOpen = modal.style.display === "flex";
+
+      if (e.key === "Escape") {
+        closeImage();
+      } else if (isOpen && e.key === "ArrowLeft") {
+        navigateImage(-1);
+      } else if (isOpen && e.key === "ArrowRight") {
+        navigateImage(1);
+      }
     });
   </script>
 
