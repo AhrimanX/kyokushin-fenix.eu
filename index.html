@@ -948,10 +948,10 @@
 
     <div class="top-menu" id="topMenu">
       <a href="#about">ЗА КЛУБА</a>
-      <a href="#trainings">ТРЕНИРОВКИ</a>
+      <a href="#training">ТРЕНИРОВКИ</a>
       <a href="#gallery">ГАЛЕРИЯ</a>
       <a href="#contacts">КОНТАКТИ</a>
-      <a href="#history">ИСТОРИЯ НА КИОКУШИН</a>
+      <a href="#kyokushin">ИСТОРИЯ НА КИОКУШИН</a>
     </div>
   </div>
 
@@ -1345,7 +1345,7 @@
 
   </div>
 
-  <div id="trainings" class="content">
+  <div id="training" class="content">
     <button class="back-btn" onclick="closeSection()">← Назад</button>
     <h2>ТРЕНИРОВКИ</h2>
 
@@ -1519,7 +1519,7 @@
     </div>
   </div>
 
-  <div id="history" class="content">
+  <div id="kyokushin" class="content">
     <button class="back-btn" onclick="closeSection()">← Назад</button>
     <h2>ИСТОРИЯ НА КИОКУШИН</h2>
     <div style="display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;">
@@ -1602,8 +1602,8 @@
       }
     });
 
-    // ---------- Навигация чрез URL адрес (#about, #trainings, #gallery, #contacts, #history) ----------
-    const SECTION_IDS = ["about", "trainings", "gallery", "contacts", "history"];
+    // ---------- Навигация чрез URL адрес (#about, #training, #gallery, #contacts, #kyokushin) ----------
+    const SECTION_IDS = ["about", "training", "gallery", "contacts", "kyokushin"];
 
     function closeMobileMenu() {
       if (isMobile()) {
