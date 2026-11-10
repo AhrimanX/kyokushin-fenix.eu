@@ -21,7 +21,7 @@
   <meta property="og:url" content="https://kyokushin-fenix.eu">
   <meta property="og:title" content="Карате Люлин | Киокушин клуб „Феникс-Люлин"">
   <meta property="og:description" content="Киокушин карате за деца, юноши и възрастни в кв. Люлин, София. Спортно карате, самозащита и японски бойни изкуства. Първата тренировка е безплатна!">
-  <meta property="og:image" content="images/site/club-logo.png">
+  <meta property="og:image" content="https://kyokushin-fenix.eu/images/site/club-logo.png">
   <meta property="og:locale" content="bg_BG">
   <meta property="og:site_name" content="СКК Феникс-Люлин">
 
@@ -35,7 +35,7 @@
     "description": "Киокушин карате клуб в кв. Люлин, София. Предлагаме карате за деца, юноши и възрастни. Спортно карате, карате за самозащита и японски бойни изкуства.",
     "url": "https://kyokushin-fenix.eu/",
     "telephone": "+359877980967",
-    "image": "images/site/club-logo.png",
+    "image": "https://kyokushin-fenix.eu/images/site/club-logo.png",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "ул. „Добри Немиров" 5, Люлин Плаза, ет. 2",
@@ -137,20 +137,25 @@
       z-index: 1;
     }
 
+    /* ---- FIX 4: identical geometry for both side kanji images ---- */
     .bg-left,
     .bg-right {
       position: fixed;
       top: 40%;
       transform: translateY(-40%);
       height: 40vh;
+      width: auto;
+      max-width: 40vw;
+      object-fit: contain;
       opacity: 0.15;
       z-index: -1;
       pointer-events: none;
     }
 
-    .bg-left { left: 0; }
+    .bg-left  { left: 0; }
     .bg-right { right: 0; }
 
+    /* LOGO */
     .logo {
       position: fixed;
       top: 50%;
@@ -179,6 +184,7 @@
       z-index: 2000;
     }
 
+    /* TOP BAR + MENU */
     .top-bar {
       position: fixed;
       top: 0;
@@ -341,6 +347,7 @@
       color: #e0c070;
     }
 
+    /* CONTACTS */
     .contact-list {
       display: flex;
       flex-direction: column;
@@ -360,18 +367,10 @@
       transition: background 0.2s ease;
     }
 
-    .contact-row:last-child {
-      border-bottom: none;
-    }
+    .contact-row:last-child { border-bottom: none; }
+    .contact-row:hover      { background: rgba(255,255,255,0.04); }
 
-    .contact-row:hover {
-      background: rgba(255,255,255,0.04);
-    }
-
-    .contact-icon {
-      font-size: 1rem;
-      text-align: center;
-    }
+    .contact-icon  { font-size: 1rem; text-align: center; }
 
     .contact-label {
       font-family: 'Cinzel', serif;
@@ -404,19 +403,7 @@
       border: 1px solid rgba(201,168,76,0.2);
     }
 
-    @media (max-width: 600px) {
-      .contact-row {
-        grid-template-columns: 1.6rem 5rem 1fr;
-        gap: 0.4rem;
-        padding: 0.7rem 0.8rem;
-      }
-      .contact-label { font-size: 0.64rem; }
-      .contact-value { font-size: 0.82rem; }
-    }
-
-    .content.active {
-      display: block;
-    }
+    .content.active { display: block; }
 
     h2 {
       font-family: 'Cinzel', serif;
@@ -432,6 +419,7 @@
       border-bottom: 1px solid rgba(201,168,76,0.3);
     }
 
+    /* GALLERY */
     .gallery {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -460,6 +448,7 @@
       filter: brightness(1.1);
     }
 
+    /* MODAL */
     .modal {
       display: none;
       position: fixed;
@@ -521,29 +510,36 @@
     }
 
     .modal-nav:hover { opacity: 1; }
-    .modal-nav.prev { left: -70px; }
-    .modal-nav.next { right: -70px; }
+    .modal-nav.prev  { left: -70px; }
+    .modal-nav.next  { right: -70px; }
 
     @media (max-width: 900px) {
       .modal-nav.prev { left: 4px; }
       .modal-nav.next { right: 4px; }
-      .modal-nav { font-size: 32px; background: rgba(0,0,0,0.4); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; padding: 0; }
+      .modal-nav {
+        font-size: 32px;
+        background: rgba(0,0,0,0.4);
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+      }
     }
 
+    /* ---- FIX 1 + FIX 2: mobile breakpoint matches JS matchMedia ---- */
     @media (max-width: 600px), (max-aspect-ratio: 9/16) {
       body {
         background: url('images/site/rumi-background.jpg') no-repeat center center fixed;
         background-size: cover;
       }
 
-      .hamburger {
-        display: flex;
-      }
+      .hamburger { display: flex; }
 
       .bg-left,
-      .bg-right {
-        display: none;
-      }
+      .bg-right { display: none; }
 
       .top-menu {
         position: absolute;
@@ -575,9 +571,7 @@
         font-size: 0.75rem;
       }
 
-      .logo {
-        height: 140px !important;
-      }
+      .logo { height: 140px !important; }
 
       .content {
         margin: 190px 1rem 2rem 1rem;
@@ -589,8 +583,17 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 0.4rem;
       }
+
+      .contact-row {
+        grid-template-columns: 1.6rem 5rem 1fr;
+        gap: 0.4rem;
+        padding: 0.7rem 0.8rem;
+      }
+      .contact-label { font-size: 0.64rem; }
+      .contact-value { font-size: 0.82rem; }
     }
 
+    /* FEED DIVIDER */
     .feed-divider {
       margin: 1.6rem 0;
       border-bottom: 1px solid rgba(201,168,76,0.3);
@@ -619,9 +622,8 @@
       }
     }
 
-    .tournament-block {
-      margin-top: 1.6rem;
-    }
+    /* TOURNAMENT CARDS */
+    .tournament-block { margin-top: 1.6rem; }
 
     .tournament-header {
       display: flex;
@@ -630,10 +632,7 @@
       margin-bottom: 1.2rem;
     }
 
-    .tournament-icon {
-      font-size: 1.6rem;
-      line-height: 1;
-    }
+    .tournament-icon { font-size: 1.6rem; line-height: 1; }
 
     .tournament-title {
       font-family: 'Cinzel', serif;
@@ -723,9 +722,7 @@
       margin-top: 0.15rem;
     }
 
-    .news-block {
-      margin-top: 1.6rem;
-    }
+    .news-block { margin-top: 1.6rem; }
 
     .news-divider {
       border: 0;
@@ -743,13 +740,8 @@
       border-radius: 4px;
     }
 
-    .memorial-block .news-title {
-      color: rgba(232,224,216,0.9);
-    }
-
-    .memorial-block .news-text {
-      font-style: italic;
-    }
+    .memorial-block .news-title { color: rgba(232,224,216,0.9); }
+    .memorial-block .news-text  { font-style: italic; }
 
     .memorial-block .news-signoff {
       margin-top: 0.9rem;
@@ -798,10 +790,7 @@
       margin-bottom: 1.2rem;
     }
 
-    .news-icon {
-      font-size: 1.6rem;
-      line-height: 1;
-    }
+    .news-icon { font-size: 1.6rem; line-height: 1; }
 
     .news-title {
       font-family: 'Cinzel', serif;
@@ -825,6 +814,7 @@
       color: rgba(232,224,216,0.85);
     }
 
+    /* SCHEDULE */
     .schedule-grid {
       display: flex;
       flex-wrap: wrap;
@@ -849,9 +839,7 @@
       transition: background 0.2s ease;
     }
 
-    .schedule-day:hover {
-      background: rgba(255,255,255,0.09);
-    }
+    .schedule-day:hover { background: rgba(255,255,255,0.09); }
 
     .schedule-day.inactive {
       border-top-color: rgba(255,255,255,0.1);
@@ -859,9 +847,7 @@
       opacity: 0.4;
     }
 
-    .schedule-day.weekend {
-      border-top-color: var(--red);
-    }
+    .schedule-day.weekend { border-top-color: var(--red); }
 
     .day-name {
       font-family: 'Cinzel', serif;
@@ -872,13 +858,8 @@
       margin-bottom: 0.3rem;
     }
 
-    .schedule-day.inactive .day-name {
-      color: rgba(232,224,216,0.4);
-    }
-
-    .schedule-day.weekend .day-name {
-      color: #e07878;
-    }
+    .schedule-day.inactive .day-name { color: rgba(232,224,216,0.4); }
+    .schedule-day.weekend  .day-name { color: #e07878; }
 
     .day-time {
       font-size: 0.82rem;
@@ -922,34 +903,32 @@
     }
 
     @media (max-width: 600px) {
-      .schedule-grid {
-        gap: 0.4rem;
-      }
-
+      .schedule-grid { gap: 0.4rem; }
       .schedule-day {
         flex: 0 0 calc((100% - 2 * 0.4rem) / 3);
         max-width: none;
       }
-
       .day-time { font-size: 0.75rem; }
-      .day-name  { font-size: 0.62rem; }
+      .day-name { font-size: 0.62rem; }
     }
   </style>
 </head>
 
 <body>
 
+  <!-- H1 скрит визуално, но индексиран от Google -->
   <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;">
     Карате Люлин – Киокушин карате клуб „Феникс-Люлин", София
   </h1>
 
   <div id="bgLayer"></div>
 
-  <img src="images/site/kan.png" class="bg-left" alt="">
-  <img src="images/site/kai.png" class="bg-right" alt="">
+  <!-- FIX 4: local files, identical CSS -->
+  <img src="images/site/kan.png" class="bg-left"  alt="" aria-hidden="true">
+  <img src="images/site/kai.png" class="bg-right" alt="" aria-hidden="true">
 
   <div class="top-bar">
-    <button class="hamburger" id="hamburger" aria-label="Меню">
+    <button class="hamburger" id="hamburger" aria-label="Меню" aria-expanded="false" aria-controls="topMenu">
       <span></span><span></span><span></span>
     </button>
 
@@ -969,6 +948,7 @@
        id="logo"
        alt="Феникс Люлин Лого">
 
+  <!-- ================= ABOUT ================= -->
   <div id="about" class="content">
     <button class="back-btn" onclick="closeSection()">← Назад</button>
     <h2>ЗА КЛУБА</h2>
@@ -1026,8 +1006,8 @@
       <div class="news-header">
         <span class="news-icon">🕯️</span>
         <div>
-          <div class="news-title">Кайчо Хацуо Рояма 1948 – 2024</div>
-          <div class="news-meta">3-ти август 2024</div>
+          <div class="news-title">Кайчо Хацуо Рояма 1948 – 2026</div>
+          <div class="news-meta">3-ти август 2026</div>
         </div>
       </div>
       <img src="images/site/royama-death.jpg" alt="Кайчо Хацуо Рояма" class="memorial-photo" loading="lazy">
@@ -1082,39 +1062,27 @@
       <div class="achievement-cards">
         <div class="achievement-card">
           <div class="athlete-name">Антон Атанасов</div>
-          <div class="achievement-medals">
-            <span class="medal gold">🥇 I място — Момчета до 8 г., -35 кг.</span>
-          </div>
+          <div class="achievement-medals"><span class="medal gold">🥇 I място — Момчета до 8 г., -35 кг.</span></div>
         </div>
         <div class="achievement-card">
           <div class="athlete-name">Белослава Манукян</div>
-          <div class="achievement-medals">
-            <span class="medal gold">🥇 I място — Момичета до 10 г., -35 кг.</span>
-          </div>
+          <div class="achievement-medals"><span class="medal gold">🥇 I място — Момичета до 10 г., -35 кг.</span></div>
         </div>
         <div class="achievement-card">
           <div class="athlete-name">Георги Миланов</div>
-          <div class="achievement-medals">
-            <span class="medal silver">🥈 II място — Момчета до 12 г., -35 кг.</span>
-          </div>
+          <div class="achievement-medals"><span class="medal silver">🥈 II място — Момчета до 12 г., -35 кг.</span></div>
         </div>
         <div class="achievement-card">
           <div class="athlete-name">Станко Станев</div>
-          <div class="achievement-medals">
-            <span class="medal gold">🥇 I място — Момчета до 12 г., -45 кг.</span>
-          </div>
+          <div class="achievement-medals"><span class="medal gold">🥇 I място — Момчета до 12 г., -45 кг.</span></div>
         </div>
         <div class="achievement-card">
           <div class="athlete-name">Християн Димитров</div>
-          <div class="achievement-medals">
-            <span class="medal gold">🥇 I място — Момчета до 12 г., -50 кг.</span>
-          </div>
+          <div class="achievement-medals"><span class="medal gold">🥇 I място — Момчета до 12 г., -50 кг.</span></div>
         </div>
         <div class="achievement-card">
           <div class="athlete-name">Виктория Стоянова</div>
-          <div class="achievement-medals">
-            <span class="medal bronze">🥉 III място — Момичета до 14 г., -50 кг.</span>
-          </div>
+          <div class="achievement-medals"><span class="medal bronze">🥉 III място — Момичета до 14 г., -50 кг.</span></div>
         </div>
         <div class="achievement-card">
           <div class="athlete-name">Румяна Янъкова</div>
@@ -1128,6 +1096,7 @@
 
     <hr class="news-divider">
 
+    <!-- FIX 5: this block's .tournament-header is correctly closed -->
     <div class="tournament-block">
       <div class="tournament-header">
         <span class="tournament-icon">🏆</span>
@@ -1135,6 +1104,7 @@
           <div class="tournament-title">Държавно първенство по ката — Купа „Феникс"</div>
           <div class="tournament-meta">15-и март 2026 &nbsp;·&nbsp; гр. София</div>
         </div>
+      </div>
 
       <div class="tournament-poster-wrap">
         <img src="images/news/fenix-kata-tournament.jpg" alt="Плакат Купа „Феникс" — държавно първенство по ката" class="tournament-poster" onclick="openImage(this)" loading="lazy">
@@ -1149,7 +1119,6 @@
             <span class="medal special">★ Най-техничен състезател</span>
           </div>
         </div>
-
         <div class="achievement-card">
           <div class="athlete-name">Виктория Стоянова</div>
           <div class="achievement-medals">
@@ -1157,19 +1126,13 @@
             <span class="medal silver">🥈 II място — Девойки младша възраст 2011–2010 г.</span>
           </div>
         </div>
-
         <div class="achievement-card">
           <div class="athlete-name">Андрей Андреев</div>
-          <div class="achievement-medals">
-            <span class="medal silver">🥈 II място — Мъже</span>
-          </div>
+          <div class="achievement-medals"><span class="medal silver">🥈 II място — Мъже</span></div>
         </div>
-
         <div class="achievement-card">
           <div class="athlete-name">Антон Атанасов</div>
-          <div class="achievement-medals">
-            <span class="medal silver">🥈 II място — Момчета до 8 г.</span>
-          </div>
+          <div class="achievement-medals"><span class="medal silver">🥈 II място — Момчета до 8 г.</span></div>
         </div>
       </div>
     </div>
@@ -1187,15 +1150,11 @@
       <div class="achievement-cards">
         <div class="achievement-card">
           <div class="athlete-name">Белослава Манукян</div>
-          <div class="achievement-medals">
-            <span class="medal gold">🥇 I място</span>
-          </div>
+          <div class="achievement-medals"><span class="medal gold">🥇 I място</span></div>
         </div>
         <div class="achievement-card">
           <div class="athlete-name">Георги Миланов</div>
-          <div class="achievement-medals">
-            <span class="medal bronze">🥉 III място</span>
-          </div>
+          <div class="achievement-medals"><span class="medal bronze">🥉 III място</span></div>
         </div>
       </div>
     </div>
@@ -1213,15 +1172,11 @@
       <div class="achievement-cards">
         <div class="achievement-card">
           <div class="athlete-name">Адриан Хасанов</div>
-          <div class="achievement-medals">
-            <span class="medal gold">🥇 I място</span>
-          </div>
+          <div class="achievement-medals"><span class="medal gold">🥇 I място</span></div>
         </div>
         <div class="achievement-card">
           <div class="athlete-name">Антон Атанасов</div>
-          <div class="achievement-medals">
-            <span class="medal silver">🥈 II място</span>
-          </div>
+          <div class="achievement-medals"><span class="medal silver">🥈 II място</span></div>
         </div>
       </div>
     </div>
@@ -1239,9 +1194,7 @@
       <div class="achievement-cards">
         <div class="achievement-card">
           <div class="athlete-name">Станко Станев</div>
-          <div class="achievement-medals">
-            <span class="medal gold">🥇 I място</span>
-          </div>
+          <div class="achievement-medals"><span class="medal gold">🥇 I място</span></div>
         </div>
       </div>
     </div>
@@ -1259,9 +1212,7 @@
       <div class="achievement-cards">
         <div class="achievement-card">
           <div class="athlete-name">Белослава Манукян</div>
-          <div class="achievement-medals">
-            <span class="medal bronze">🥉 III място</span>
-          </div>
+          <div class="achievement-medals"><span class="medal bronze">🥉 III място</span></div>
         </div>
       </div>
     </div>
@@ -1279,21 +1230,15 @@
       <div class="achievement-cards">
         <div class="achievement-card">
           <div class="athlete-name">Белослава Манукян</div>
-          <div class="achievement-medals">
-            <span class="medal silver">🥈 II място</span>
-          </div>
+          <div class="achievement-medals"><span class="medal silver">🥈 II място</span></div>
         </div>
         <div class="achievement-card">
           <div class="athlete-name">Християн Димитров</div>
-          <div class="achievement-medals">
-            <span class="medal bronze">🥉 III място</span>
-          </div>
+          <div class="achievement-medals"><span class="medal bronze">🥉 III място</span></div>
         </div>
         <div class="achievement-card">
           <div class="athlete-name">Виктория Стоянова</div>
-          <div class="achievement-medals">
-            <span class="medal bronze">🥉 III място</span>
-          </div>
+          <div class="achievement-medals"><span class="medal bronze">🥉 III място</span></div>
         </div>
       </div>
     </div>
@@ -1311,57 +1256,39 @@
       <div class="achievement-cards">
         <div class="achievement-card">
           <div class="athlete-name">Мария Иванова</div>
-          <div class="achievement-medals">
-            <span class="medal gold">🥇 I място</span>
-          </div>
+          <div class="achievement-medals"><span class="medal gold">🥇 I място</span></div>
         </div>
         <div class="achievement-card">
           <div class="athlete-name">Белослава Манукян</div>
-          <div class="achievement-medals">
-            <span class="medal gold">🥇 I място</span>
-          </div>
+          <div class="achievement-medals"><span class="medal gold">🥇 I място</span></div>
         </div>
         <div class="achievement-card">
           <div class="athlete-name">Нуртен Попова</div>
-          <div class="achievement-medals">
-            <span class="medal silver">🥈 II място</span>
-          </div>
+          <div class="achievement-medals"><span class="medal silver">🥈 II място</span></div>
         </div>
         <div class="achievement-card">
           <div class="athlete-name">Християн Димитров</div>
-          <div class="achievement-medals">
-            <span class="medal silver">🥈 II място</span>
-          </div>
+          <div class="achievement-medals"><span class="medal silver">🥈 II място</span></div>
         </div>
         <div class="achievement-card">
           <div class="athlete-name">Николай Михайлов</div>
-          <div class="achievement-medals">
-            <span class="medal silver">🥈 II място</span>
-          </div>
+          <div class="achievement-medals"><span class="medal silver">🥈 II място</span></div>
         </div>
         <div class="achievement-card">
           <div class="athlete-name">Михаил Билалов</div>
-          <div class="achievement-medals">
-            <span class="medal silver">🥈 II място</span>
-          </div>
+          <div class="achievement-medals"><span class="medal silver">🥈 II място</span></div>
         </div>
         <div class="achievement-card">
           <div class="athlete-name">Димитър Узунов</div>
-          <div class="achievement-medals">
-            <span class="medal bronze">🥉 III място</span>
-          </div>
+          <div class="achievement-medals"><span class="medal bronze">🥉 III място</span></div>
         </div>
         <div class="achievement-card">
           <div class="athlete-name">Виктория Стоянова</div>
-          <div class="achievement-medals">
-            <span class="medal bronze">🥉 III място</span>
-          </div>
+          <div class="achievement-medals"><span class="medal bronze">🥉 III място</span></div>
         </div>
         <div class="achievement-card">
           <div class="athlete-name">Микаела Нанова</div>
-          <div class="achievement-medals">
-            <span class="medal bronze">🥉 III място</span>
-          </div>
+          <div class="achievement-medals"><span class="medal bronze">🥉 III място</span></div>
         </div>
       </div>
     </div>
@@ -1379,27 +1306,21 @@
       <div class="achievement-cards">
         <div class="achievement-card">
           <div class="athlete-name">Белослава Манукян</div>
-          <div class="achievement-medals">
-            <span class="medal gold">🥇 I място</span>
-          </div>
+          <div class="achievement-medals"><span class="medal gold">🥇 I място</span></div>
         </div>
         <div class="achievement-card">
           <div class="athlete-name">Християн Димитров</div>
-          <div class="achievement-medals">
-            <span class="medal gold">🥇 I място</span>
-          </div>
+          <div class="achievement-medals"><span class="medal gold">🥇 I място</span></div>
         </div>
         <div class="achievement-card">
           <div class="athlete-name">Станко Станев</div>
-          <div class="achievement-medals">
-            <span class="medal silver">🥈 II място</span>
-          </div>
+          <div class="achievement-medals"><span class="medal silver">🥈 II място</span></div>
         </div>
       </div>
     </div>
-
   </div>
 
+  <!-- ================= TRAINING ================= -->
   <div id="training" class="content">
     <button class="back-btn" onclick="closeSection()">← Назад</button>
     <h2>ТРЕНИРОВКИ</h2>
@@ -1448,82 +1369,38 @@
     <p>Киокушин е път на цялостно самоусъвършенстване – физическо и духовно – в който всеки може да открие своето място и път, независимо от възрастта или опита си. Нашите тренировки развиват не само тяло и дух, но и уважение, дисциплина и увереност, като са съобразени с нивото и индивидуалния напредък на всеки трениращ.</p>
   </div>
 
+  <!-- ================= GALLERY ================= -->
   <div id="gallery" class="content">
     <button class="back-btn" onclick="closeSection()">← Назад</button>
     <h2>ГАЛЕРИЯ</h2>
     <div class="gallery">
-      <div class="photo-item">
-        <img src="images/photos/23.jpg" loading="lazy">
-      </div>
-      <div class="photo-item">
-        <img src="images/photos/22.jpg" loading="lazy">
-      </div>
-      <div class="photo-item">
-        <img src="images/photos/21.jpg" loading="lazy">
-      </div>
-      <div class="photo-item">
-        <img src="images/photos/20.jpg" loading="lazy">
-      </div>
-      <div class="photo-item">
-        <img src="images/photos/19.jpg" loading="lazy">
-      </div>
-      <div class="photo-item">
-        <img src="images/photos/18.jpg" loading="lazy">
-      </div>
-      <div class="photo-item">
-        <img src="images/photos/17.jpg" loading="lazy">
-      </div>
-      <div class="photo-item">
-        <img src="images/photos/16.jpg" loading="lazy">
-      </div>
-      <div class="photo-item">
-        <img src="images/photos/15.jpg" loading="lazy">
-      </div>
-      <div class="photo-item">
-        <img src="images/photos/14.jpg" loading="lazy">
-      </div>
-      <div class="photo-item">
-        <img src="images/photos/13.jpg" loading="lazy">
-      </div>
-      <div class="photo-item">
-        <img src="images/photos/12.jpg" loading="lazy">
-      </div>
-      <div class="photo-item">
-        <img src="images/photos/11.jpg" loading="lazy">
-      </div>
-      <div class="photo-item">
-        <img src="images/photos/10.jpg" loading="lazy">
-      </div>
-      <div class="photo-item">
-        <img src="images/photos/9.jpg" loading="lazy">
-      </div>
-      <div class="photo-item">
-        <img src="images/photos/8.jpg" loading="lazy">
-      </div>
-      <div class="photo-item">
-        <img src="images/photos/7.jpg" loading="lazy">
-      </div>
-      <div class="photo-item">
-        <img src="images/photos/6.jpg" loading="lazy">
-      </div>
-      <div class="photo-item">
-        <img src="images/photos/5.jpg" loading="lazy">
-      </div>
-      <div class="photo-item">
-        <img src="images/photos/4.jpg" loading="lazy">
-      </div>
-      <div class="photo-item">
-        <img src="images/photos/3.jpg" loading="lazy">
-      </div>
-      <div class="photo-item">
-        <img src="images/photos/2.jpg" loading="lazy">
-      </div>
-      <div class="photo-item">
-        <img src="images/photos/1.jpg" loading="lazy">
-      </div>
+      <div class="photo-item"><img src="images/photos/23.jpg" alt="Киокушин карате – СКК Феникс-Люлин" onclick="openImage(this)" loading="lazy"></div>
+      <div class="photo-item"><img src="images/photos/22.jpg" alt="Карате тренировка – Феникс-Люлин" onclick="openImage(this)" loading="lazy"></div>
+      <div class="photo-item"><img src="images/photos/21.jpg" alt="Киокушин карате деца – Феникс" onclick="openImage(this)" loading="lazy"></div>
+      <div class="photo-item"><img src="images/photos/20.jpg" alt="Спаринг киокушин – клуб Феникс" onclick="openImage(this)" loading="lazy"></div>
+      <div class="photo-item"><img src="images/photos/19.jpg" alt="Карате за деца София – Феникс-Люлин" onclick="openImage(this)" loading="lazy"></div>
+      <div class="photo-item"><img src="images/photos/18.jpg" alt="Киокушинкай тренировка – Люлин Плаза" onclick="openImage(this)" loading="lazy"></div>
+      <div class="photo-item"><img src="images/photos/17.jpg" alt="Карате клуб Люлин – бойни изкуства" onclick="openImage(this)" loading="lazy"></div>
+      <div class="photo-item"><img src="images/photos/16.jpg" alt="Японски бойни изкуства – Феникс" onclick="openImage(this)" loading="lazy"></div>
+      <div class="photo-item"><img src="images/photos/15.jpg" alt="Карате за юноши – СКК Феникс-Люлин" onclick="openImage(this)" loading="lazy"></div>
+      <div class="photo-item"><img src="images/photos/14.jpg" alt="Киокушин карате техника – Феникс" onclick="openImage(this)" loading="lazy"></div>
+      <div class="photo-item"><img src="images/photos/13.jpg" alt="Карате за самозащита София" onclick="openImage(this)" loading="lazy"></div>
+      <div class="photo-item"><img src="images/photos/12.jpg" alt="Спортно карате деца – Феникс" onclick="openImage(this)" loading="lazy"></div>
+      <div class="photo-item"><img src="images/photos/11.jpg" alt="Лагер Приморско – СКК Феникс-Люлин" onclick="openImage(this)" loading="lazy"></div>
+      <div class="photo-item"><img src="images/photos/10.jpg" alt="Киокушин карате състезание – Феникс" onclick="openImage(this)" loading="lazy"></div>
+      <div class="photo-item"><img src="images/photos/9.jpg" alt="Карате тренировка Люлин" onclick="openImage(this)" loading="lazy"></div>
+      <div class="photo-item"><img src="images/photos/8.jpg" alt="СКК Феникс-Люлин – киокушин клуб" onclick="openImage(this)" loading="lazy"></div>
+      <div class="photo-item"><img src="images/photos/7.jpg" alt="Посещение на Хаято Чида – Феникс" onclick="openImage(this)" loading="lazy"></div>
+      <div class="photo-item"><img src="images/photos/6.jpg" alt="Тренировка с Хаято Чида – Феникс" onclick="openImage(this)" loading="lazy"></div>
+      <div class="photo-item"><img src="images/photos/5.jpg" alt="Киокушин семинар – Феникс" onclick="openImage(this)" loading="lazy"></div>
+      <div class="photo-item"><img src="images/photos/4.jpg" alt="Хаято Чида и СКК Феникс-Люлин" onclick="openImage(this)" loading="lazy"></div>
+      <div class="photo-item"><img src="images/photos/3.jpg" alt="Посещение на Хаято Чида" onclick="openImage(this)" loading="lazy"></div>
+      <div class="photo-item"><img src="images/photos/2.jpg" alt="Хаято Чида на тренировка" onclick="openImage(this)" loading="lazy"></div>
+      <div class="photo-item"><img src="images/photos/1.jpg" alt="СКК Феникс-Люлин – киокушин карате" onclick="openImage(this)" loading="lazy"></div>
     </div>
   </div>
 
+  <!-- ================= CONTACTS ================= -->
   <div id="contacts" class="content">
     <button class="back-btn" onclick="closeSection()">← Назад</button>
     <h2>КОНТАКТИ</h2>
@@ -1568,9 +1445,11 @@
     </div>
   </div>
 
+  <!-- ================= HISTORY ================= -->
   <div id="kyokushin" class="content">
     <button class="back-btn" onclick="closeSection()">← Назад</button>
     <h2>ИСТОРИЯ НА КИОКУШИН</h2>
+
     <div style="display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;">
       <img src="images/site/oyama-history.jpg" alt="Масутатцу Ояма" style="width: 100px; height: auto; border-radius: 6px;" loading="lazy">
       <p><i>Масутатцу Ояма</i> (1923–1994) е основателят на <i>Киокушинкайкан (често наричан Киокушинкай или просто Киокушин)</i> карате – стил, известен с пълния контакт и суровата дисциплина. Ояма е роден в Корея като истинското му име е Чой Йеон-еуи. На деветгодишна възраст започва да тренира китайско кенпо в Манджурия, а по-късно се занимава и с джудо и бокс. В Япония учи при Гичин Фунакоши, създателя на Шотокан карате, както и при и други известни майстори. Става прочут с легендарните си тренировки в планината, където изгражда философията си за „Абсолютната истина", известна като Киокушин. Той демонстрира своята сила чрез чупене на камъни, дъски и тухли, както и чрез битки с бикове. През 1953 г. открива свое доджо в Токио и по-късно основава Международната Организация Киокушинкай (IKO). До смъртта си през 1994 г. е признат за един от най-влиятелните майстори на бойните изкуства в света. Киокушин карате означава „Върховна истина". Този стил се отличава с пълен контакт, реалистични спаринги и изключително тежки тренировки. Ояма въвежда нов стандарт в карате, като го прави по-близко до реален бой. Организацията му бързо се разпространява по света и става една от най-големите карате школи.</p>
@@ -1579,7 +1458,7 @@
     <div style="display: flex; align-items: flex-start; gap: 1rem;">
       <img src="images/site/royama-death.jpg" alt="Хацуо Рояма" style="width: 100px; height: auto; border-radius: 6px;" loading="lazy">
       <p style="margin: 0;">
-        <i>Хацуо Рояма</i> (1948-2026) e един от най-близките ученици на Ояма и негов доверен наследник. След смъртта на учителя си през 1994 г. в международната организация настъпват разделения и спорове за лидерството. Рояма, заедно с други ученици, създава <i>Киокушин-кан</i> карате – организация, която има за цел да запази духа и методите на оригиналния Киокушин. Киокушин-кан се отличава с акцент върху традицията, дисциплината и реалния боен дух, като същевременно развива модерна структура за международни състезания и усъвършенстване и обогатяване на техниките и методите за изграждане на умения.
+        <i>Хацуо Рояма</i> (1948–2026) e един от най-близките ученици на Ояма и негов доверен наследник. След смъртта на учителя си през 1994 г. в международната организация настъпват разделения и спорове за лидерството. Рояма, заедно с други ученици, създава <i>Киокушин-кан</i> карате – организация, която има за цел да запази духа и методите на оригиналния Киокушин. Киокушин-кан се отличава с акцент върху традицията, дисциплината и реалния боен дух, като същевременно развива модерна структура за международни състезания и усъвършенстване и обогатяване на техниките и методите за изграждане на умения.
       </p>
     </div>
   </div>
@@ -1591,7 +1470,6 @@
   <div id="imageModal" class="modal" onclick="closeImage()">
     <div class="modal-inner" onclick="event.stopPropagation()">
       <span class="close" onclick="closeImage()">×</span>
-      <!-- FIX 6: стрелки за навигация в lightbox -->
       <span class="modal-nav prev" onclick="event.stopPropagation(); navigateImage(-1)">‹</span>
       <img class="modal-content" id="modalImg" alt="">
       <span class="modal-nav next" onclick="event.stopPropagation(); navigateImage(1)">›</span>
@@ -1599,83 +1477,76 @@
   </div>
 
   <script>
-    const logo = document.getElementById("logo");
-    const topMenu = document.getElementById("topMenu");
-    const topBar = document.querySelector(".top-bar");
-    const hamburger = document.getElementById("hamburger");
+    const logo            = document.getElementById("logo");
+    const topMenu         = document.getElementById("topMenu");
+    const topBar          = document.querySelector(".top-bar");
+    const hamburger       = document.getElementById("hamburger");
     const centerContainer = document.getElementById("centerContainer");
-    const bgLayer = document.getElementById("bgLayer");
+    const bgLayer         = document.getElementById("bgLayer");
 
-    // FIX 6: събиране на всички галерийни/кликаеми изображения за навигация в lightbox
-    function getGalleryImages() {
-      return Array.from(document.querySelectorAll('img[onclick*="openImage"]'));
+    /* FIX 1: shared breakpoint — must match the CSS media query exactly */
+    const mobileQuery = window.matchMedia("(max-width: 600px), (max-aspect-ratio: 9/16)");
+    function isMobile() { return mobileQuery.matches; }
+
+    /* ---- menu open / close ---- */
+    function openMenu() {
+      topMenu.classList.add("show");
+      hamburger.classList.add("open");
+      hamburger.setAttribute("aria-expanded", "true");
+      document.body.classList.add("menu-open");
+      logo.style.visibility = "hidden";
     }
-    let currentImageIndex = -1;
 
-    function isMobile() {
-      return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    function closeMenu() {
+      topMenu.classList.remove("show");
+      hamburger.classList.remove("open");
+      hamburger.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("menu-open");
+      logo.style.visibility = "visible";
     }
 
     hamburger.addEventListener("click", (e) => {
       e.stopPropagation();
-      topMenu.classList.toggle("show");
-      hamburger.classList.toggle("open");
-      topBar.style.display = "flex";
-      document.body.classList.toggle("menu-open");
-      logo.style.visibility = topMenu.classList.contains("show") ? "hidden" : "visible";
+      topMenu.classList.contains("show") ? closeMenu() : openMenu();
     });
 
+    /* Outside click closes the dropdown */
     document.addEventListener("click", (e) => {
       if (!topMenu.contains(e.target) && !hamburger.contains(e.target) && !logo.contains(e.target)) {
-        topMenu.classList.remove("show");
-        hamburger.classList.remove("open");
-        document.body.classList.remove("menu-open");
-        logo.style.visibility = "visible";
+        closeMenu();
       }
     });
 
+    /* Logo on the home screen acts as a menu toggle on mobile, close on mini */
     logo.addEventListener("click", (e) => {
       e.stopPropagation();
-      const isMini = logo.classList.contains("mini");
-
-      if (isMini) {
-        closeSection();
-        return;
-      }
-
+      if (logo.classList.contains("mini")) { closeSection(); return; }
       if (isMobile()) {
-        topMenu.classList.toggle("show");
-        hamburger.classList.toggle("open");
-        topBar.style.display = "flex";
-        document.body.classList.toggle("menu-open");
+        topMenu.classList.contains("show") ? closeMenu() : openMenu();
       }
     });
 
-    // ---------- Навигация чрез URL адрес (#about, #training, #gallery, #contacts, #kyokushin) ----------
+    /* If the viewport grows past the mobile breakpoint, clean up menu state */
+    mobileQuery.addEventListener("change", () => {
+      if (!isMobile()) closeMenu();
+    });
+
+    /* ---- hash routing ---- */
     const SECTION_IDS = ["about", "training", "gallery", "contacts", "kyokushin"];
 
-    function closeMobileMenu() {
-      if (isMobile()) {
-        topMenu.classList.remove("show");
-        hamburger.classList.remove("open");
-        document.body.classList.remove("menu-open");
-        logo.style.visibility = "visible";
-      }
-    }
-
-    // Показва началния екран (без да пипа адреса)
     function showHome() {
       document.querySelectorAll(".content").forEach(s => s.classList.remove("active"));
       document.querySelectorAll(".top-menu a").forEach(a => a.style.color = "");
       centerContainer.classList.remove("hidden");
-      logo.classList.remove("mini", "menu-open");
-      closeMobileMenu();
+      logo.classList.remove("mini");
+      closeMenu();
     }
 
-    // Показва секция (без да пипа адреса)
     function showSection(id, instant) {
       document.querySelectorAll(".content").forEach(el => el.classList.remove("active"));
-      document.getElementById(id).classList.add("active");
+      const el = document.getElementById(id);
+      if (!el) { showHome(); return; }
+      el.classList.add("active");
 
       document.querySelectorAll(".top-menu a").forEach(a => {
         a.style.color = a.getAttribute("href") === "#" + id ? "#c9a84c" : "";
@@ -1683,12 +1554,11 @@
 
       centerContainer.classList.add("hidden");
       logo.classList.add("mini");
-      closeMobileMenu();
+      closeMenu();
 
       window.scrollTo({ top: 0, behavior: instant ? "auto" : "smooth" });
     }
 
-    // Чете адреса и показва правилното нещо
     function route(initial) {
       const id = decodeURIComponent(location.hash.slice(1));
       if (SECTION_IDS.includes(id)) {
@@ -1700,61 +1570,58 @@
 
     window.addEventListener("hashchange", () => route(false));
 
-    // Клик на линк към секцията, която вече е отворена (hashchange не се задейства)
+    /* Re-clicking the same anchor doesn't fire hashchange */
     topMenu.addEventListener("click", (e) => {
       const a = e.target.closest('a[href^="#"]');
-      if (a && a.getAttribute("href") === location.hash) route(false);
+      if (a && a.getAttribute("href") === location.hash) {
+        e.preventDefault();
+        route(false);
+      }
     });
 
-    // "Назад" бутон, лого и фон: връщане към началния екран и чист адрес
-    window.closeSection = function() {
+    /* Back button, logo and background layer */
+    window.closeSection = function () {
       if (location.hash) history.pushState(null, "", location.pathname + location.search);
       showHome();
       window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    // Остава за съвместимост – просто сменя адреса
-    window.openSection = function(id) {
-      if (location.hash === "#" + id) route(false);
-      else location.hash = id;
-      return false;
-    };
+    bgLayer.addEventListener("click", () => closeSection());
 
-    bgLayer.addEventListener("click", () => {
-      closeSection();
-    });
+    /* ---- lightbox ---- */
+    function getGalleryImages() {
+      return Array.from(document.querySelectorAll('img[onclick*="openImage"]'));
+    }
+    let currentImageIndex = -1;
 
-    // FIX 6: openImage записва индекса и позволява навигация
-    window.openImage = function(img) {
-      const modal = document.getElementById('imageModal');
-      const modalImg = document.getElementById('modalImg');
-      const images = getGalleryImages();
+    window.openImage = function (img) {
+      const modal    = document.getElementById("imageModal");
+      const modalImg = document.getElementById("modalImg");
+      const images   = getGalleryImages();
       currentImageIndex = images.indexOf(img);
       modal.style.display = "flex";
       modalImg.src = img.src;
-      modalImg.alt = img.alt;
-    }
+      modalImg.alt = img.alt || "";
+    };
 
-    // FIX 6: навигация между изображенията
-    window.navigateImage = function(direction) {
+    window.navigateImage = function (direction) {
       const images = getGalleryImages();
       if (!images.length) return;
       currentImageIndex = (currentImageIndex + direction + images.length) % images.length;
-      const modalImg = document.getElementById('modalImg');
+      const modalImg = document.getElementById("modalImg");
       modalImg.src = images[currentImageIndex].src;
-      modalImg.alt = images[currentImageIndex].alt;
-    }
+      modalImg.alt = images[currentImageIndex].alt || "";
+    };
 
     function closeImage() {
-      document.getElementById('imageModal').style.display = "none";
+      document.getElementById("imageModal").style.display = "none";
       currentImageIndex = -1;
     }
+    window.closeImage = closeImage;
 
-    // FIX 6: клавиатурна навигация в lightbox (← → Escape)
     document.addEventListener("keydown", (e) => {
-      const modal = document.getElementById('imageModal');
+      const modal = document.getElementById("imageModal");
       const isOpen = modal.style.display === "flex";
-
       if (e.key === "Escape") {
         closeImage();
       } else if (isOpen && e.key === "ArrowLeft") {
@@ -1764,7 +1631,7 @@
       }
     });
 
-    // Отваряне на правилната секция, ако адресът вече съдържа #...
+    /* ---- initial route ---- */
     route(true);
   </script>
 
